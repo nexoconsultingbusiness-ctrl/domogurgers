@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowDown, Pin } from "@/components/ui/icons";
+import Link from "next/link";
+import { ArrowRight, Pin } from "@/components/ui/icons";
 
 export function Hero() {
   return (
@@ -34,9 +35,9 @@ export function Hero() {
             solo una hamburguesa.
           </p>
           <div className="reference-hero-actions">
-            <a className="reference-button" href="/catalogo">
-              Descubre el menú <ArrowDown />
-            </a>
+            <Link className="reference-button" href="/catalogo">
+              Ver catálogo <ArrowRight />
+            </Link>
             <a
               className="reference-button reference-button-outline"
               href="#sedes"

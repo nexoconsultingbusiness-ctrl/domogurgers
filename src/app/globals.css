@@ -333,6 +333,9 @@ h2 {
   margin-top: 14px;
   font-size: 11px;
 }
+.flavor-aside .button-primary {
+  margin-top: 24px;
+}
 .story-section {
   background: var(--wine);
   padding: 112px 0 64px;
@@ -823,6 +826,10 @@ h2 {
     margin: 0;
     font-size: 9px;
   }
+  .flavor-aside .button-primary {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
   .story-section {
     padding: 76px 0 48px;
   }
@@ -1278,6 +1285,7 @@ h2 {
 }
 .burger-card-bottom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -1301,11 +1309,16 @@ h2 {
   flex-shrink: 0;
 }
 .burger-card-bottom > a {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
   transition:
     color 180ms,
     background 180ms,

@@ -129,11 +129,11 @@ components:
     rounded: "{rounded.rectangular}"
   menu-card-copy:
     padding: "28px"
-  product-arrow:
+  product-catalog-action:
     textColor: "{colors.foreground}"
     rounded: "{rounded.rectangular}"
     height: "44px"
-    width: "44px"
+    padding: "10px 14px"
 ---
 
 # Design System: DomoBurgers
@@ -236,24 +236,24 @@ Las piezas de marca conservadas usan esquinas discretas en acciones (`rounded.ac
 
 Acciones rectangulares, compactas y visibles sobre la foto.
 
-- **Primary:** oro, tinta negra cálida y flecha SVG; «Descubre el menú» lleva a `/catalogo` desde la ampliación del 8 de octubre de 2026.
+- **Primary:** oro, tinta negra cálida y flecha SVG; «Ver catálogo» lleva a `/catalogo` desde la ampliación del 8 de octubre de 2026.
 - **Outline:** fondo transparente, borde blanco fotográfico al (40%) y pin SVG; «Encuéntranos» lleva a `#sedes`. Hover con blanco de lectura.
 - **Hover / Focus:** primario oro de interacción y subida de (2px). Outline de foco oro de (3px), separado (6px), con `:focus-visible`.
-- **Header CTA:** compacto hacia `/catalogo`; «Pedir ahora» inicia el recorrido de selección y carrito. Móvil usa «Ver menú», mínimo (44px).
-- **Brand action / text link:** botón Montserrat redondeado y enlaces editoriales conservados. Su flecha se desplaza (4px) al hover; los apoyos pueden comenzar en oro.
+- **Header CTA:** compacto hacia `/catalogo`; «Pedir ahora» inicia el recorrido de selección y carrito. Móvil usa «Ver catálogo», mínimo (44px).
+- **Brand action / text link:** botón Montserrat redondeado y enlaces editoriales conservados. Su flecha se desplaza (4px) al hover; los apoyos pueden comenzar en oro. El detalle de marca incluye «Ver catálogo» y el cierre «Armar mi pedido», ambos hacia `/catalogo`. En móvil, el botón del detalle ocupa una fila completa bajo sello y texto.
 
 ### Cards / Containers
 
 La carta presenta tres artículos dentro de una superficie continua.
 
 - **Photo:** (4:3), cover y etiqueta amarilla superior izquierda. Con hover y puntero fino, escala (1.05) durante (700ms); movimiento reducido anula la transición.
-- **Copy:** nombre/precio, ingredientes, separador, estrella SVG y flecha en caja de (44px), hacia `/catalogo?producto=<id>` con nombre accesible del producto. Debajo de la retícula, «Ver catálogo y armar pedido» ofrece el acceso general.
+- **Copy:** nombre/precio, ingredientes, separador, estrella SVG y botón de contorno oro «Elegir», con flecha y altura mínima de (44px), hacia `/catalogo?producto=<id>` con nombre accesible del producto. Debajo de la retícula, «Ver catálogo y armar pedido» ofrece el acceso general.
 - **Truth:** D'omo Doble, Bacon Royal y Crispy Chicken son ejemplos provisionales en COP. Conservar el aviso de nombres, ingredientes, precios e imágenes de ejemplo mientras no exista carta confirmada.
 - **Retained brand pieces:** foto de detalle con radio/sombra, lista descriptiva de valores, emblema negro sobre vino y sello circular oro, en Montserrat y con SVG originales.
 
 ### Navigation
 
-Encabezado transparente con logo blanco original, «Menú», «Sedes» y acción oro. Los enlaces cambian a oro al hover; bajo (768px) se sustituyen por «Ver menú», sin panel desplegable. Menú, pedido y Carta del pie abren `/catalogo`; el logo regresa a `/#inicio` y Sedes a `/#sedes`. El enlace para saltar al contenido aparece al recibir foco.
+Encabezado transparente con logo blanco original, «Catálogo», «Sedes» y acción oro. Los enlaces cambian a oro al hover; bajo (768px) se sustituyen por «Ver catálogo», sin panel desplegable. Menú, pedido y Carta del pie abren `/catalogo`; el logo regresa a `/#inicio` y Sedes a `/#sedes`. El enlace para saltar al contenido aparece al recibir foco.
 
 ### Digital Catalog
 

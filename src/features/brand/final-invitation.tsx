@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "@/components/ui/icons";
 
 export function FinalInvitation() {
@@ -14,9 +15,9 @@ export function FinalInvitation() {
             <span>buen sabor.</span>
           </h2>
           <p>De nuestra tierra. Con todo el corazón.</p>
-          <a className="button-primary" href="#inicio">
-            Vuelve a disfrutarlo <ArrowRight />
-          </a>
+          <Link className="button-primary" href="/catalogo">
+            Armar mi pedido <ArrowRight />
+          </Link>
         </div>
         <figure className="invitation-image" data-reveal>
           <Image

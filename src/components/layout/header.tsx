@@ -19,7 +19,7 @@ export function Header() {
           />
         </Link>
         <nav className="reference-navigation" aria-label="Navegación principal">
-          <Link href="/catalogo">Menú</Link>
+          <Link href="/catalogo">Catálogo</Link>
           <Link href="/#sedes">Sedes</Link>
           <Link
             className="reference-button reference-header-cta"
@@ -32,7 +32,7 @@ export function Header() {
           className="reference-button reference-mobile-menu"
           href="/catalogo"
         >
-          Ver menú
+          Ver catálogo
         </Link>
       </div>
     </header>

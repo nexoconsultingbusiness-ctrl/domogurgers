@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Spark } from "@/components/ui/icons";
 
 export function FlavorScene() {
@@ -61,9 +62,9 @@ export function FlavorScene() {
               <br />
               Los buenos momentos, también.
             </p>
-            <a className="text-link" href="#carta">
-              Descubre el menú <ArrowRight />
-            </a>
+            <Link className="button-primary" href="/catalogo">
+              Ver catálogo <ArrowRight />
+            </Link>
           </div>
         </div>
       </div>

@@ -47,9 +47,9 @@ export function MenuSection() {
                     </span>
                     <Link
                       href={`/catalogo?producto=${item.id}`}
-                      aria-label={`Ver detalle de ${item.name}`}
+                      aria-label={`Elegir ${item.name} en el catálogo`}
                     >
-                      <ArrowUpRight />
+                      Elegir <ArrowUpRight />
                     </Link>
                   </div>
                 </div>
