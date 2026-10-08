@@ -236,10 +236,10 @@ Las piezas de marca conservadas usan esquinas discretas en acciones (`rounded.ac
 
 Acciones rectangulares, compactas y visibles sobre la foto.
 
-- **Primary:** oro, tinta negra cálida y flecha SVG; «Descubre el menú» lleva a `#carta`.
+- **Primary:** oro, tinta negra cálida y flecha SVG; «Descubre el menú» lleva a `/catalogo` desde la ampliación del 8 de octubre de 2026.
 - **Outline:** fondo transparente, borde blanco fotográfico al (40%) y pin SVG; «Encuéntranos» lleva a `#sedes`. Hover con blanco de lectura.
 - **Hover / Focus:** primario oro de interacción y subida de (2px). Outline de foco oro de (3px), separado (6px), con `:focus-visible`.
-- **Header CTA:** compacto hacia `#carta`; «Pedir ahora» conserva el enlace de la referencia, sin iniciar una compra. Móvil usa «Ver menú», mínimo (44px).
+- **Header CTA:** compacto hacia `/catalogo`; «Pedir ahora» inicia el recorrido de selección y carrito. Móvil usa «Ver menú», mínimo (44px).
 - **Brand action / text link:** botón Montserrat redondeado y enlaces editoriales conservados. Su flecha se desplaza (4px) al hover; los apoyos pueden comenzar en oro.
 
 ### Cards / Containers
@@ -247,13 +247,22 @@ Acciones rectangulares, compactas y visibles sobre la foto.
 La carta presenta tres artículos dentro de una superficie continua.
 
 - **Photo:** (4:3), cover y etiqueta amarilla superior izquierda. Con hover y puntero fino, escala (1.05) durante (700ms); movimiento reducido anula la transición.
-- **Copy:** nombre/precio, ingredientes, separador, estrella SVG y flecha en caja de (44px), hacia `#sedes` con nombre accesible del producto.
+- **Copy:** nombre/precio, ingredientes, separador, estrella SVG y flecha en caja de (44px), hacia `/catalogo?producto=<id>` con nombre accesible del producto. Debajo de la retícula, «Ver catálogo y armar pedido» ofrece el acceso general.
 - **Truth:** D'omo Doble, Bacon Royal y Crispy Chicken son ejemplos provisionales en COP. Conservar el aviso de nombres, ingredientes, precios e imágenes de ejemplo mientras no exista carta confirmada.
 - **Retained brand pieces:** foto de detalle con radio/sombra, lista descriptiva de valores, emblema negro sobre vino y sello circular oro, en Montserrat y con SVG originales.
 
 ### Navigation
 
-Encabezado transparente con logo blanco original, «Menú», «Sedes» y acción oro. Los enlaces cambian a oro al hover; bajo (768px) se sustituyen por «Ver menú», sin panel desplegable. El logo regresa a `#inicio`; el pie conserva su navegación. El enlace para saltar al contenido aparece al recibir foco.
+Encabezado transparente con logo blanco original, «Menú», «Sedes» y acción oro. Los enlaces cambian a oro al hover; bajo (768px) se sustituyen por «Ver menú», sin panel desplegable. Menú, pedido y Carta del pie abren `/catalogo`; el logo regresa a `/#inicio` y Sedes a `/#sedes`. El enlace para saltar al contenido aparece al recibir foco.
+
+### Digital Catalog
+
+La ampliación de `/catalogo` conserva Arial, negro cálido, oro, fotografías existentes y controles rectangulares. Sus estilos locales viven en `src/features/catalog/catalog.module.css`; el flujo interactivo, en `src/features/catalog/catalog.tsx`. La dirección de esta superficie se registra en `.impeccable/surfaces/src-app-public-catalogo-page-tsx.md`.
+
+- **Product browsing:** cabecera fotográfica compacta con veladura y titular blanco/oro; filtros de categoría con selección oro, búsqueda con foco oro y contador de resultados. Retícula de tres columnas, dos bajo (960px) y una bajo (640px), con separación de (24px). Las tarjetas conservan foto (4:3), línea fina, etiqueta oro, precio visible y acciones diferenciadas de detalle y agregado.
+- **Detail and cart:** detalle en diálogo nativo centrado, de hasta (560px); carrito en panel lateral derecho del mismo ancho máximo y alto de (100dvh). En móvil ocupan todo el ancho. Fondo oscurecido, encabezado persistente con cierre, retorno de foco y Escape; cantidades con controles de (44px). El carrito flotante oro muestra cantidad y subtotal cuando hay productos; una notificación breve confirma los agregados.
+- **Order fields:** campos rectangulares sobre negro cálido, borde fino, texto de (16px) y altura mínima de (48px); foco oro de (2px). Nombre, sede, recogida o domicilio, dirección condicional y notas preceden al subtotal y la acción WhatsApp. Los errores usan texto coral; los avisos de configuración y el subtotal destacan en oro. Los estados vacíos ofrecen volver al menú.
+- **State and truth:** selección visible de filtros, cantidades en tarjeta, controles deshabilitados en los límites y avisos provisionales en catálogo, detalle y carrito. La acción prepara un mensaje para confirmar con el negocio; no presenta el pedido como pagado o aceptado. Movimiento reducido elimina las transiciones, incluido el zoom fotográfico leve.
 
 ### Brand Assets
 

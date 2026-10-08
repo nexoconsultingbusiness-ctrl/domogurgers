@@ -38,14 +38,17 @@ No necesita `vercel.json`, exportación estática, base de datos ni credenciales
 
 `SITE_URL` es opcional al comenzar con el dominio de Vercel. Para un dominio propio, configurarlo únicamente en Production con su origen HTTPS, por ejemplo `https://dominio.com`, y volver a desplegar. Las variables `VERCEL_ENV`, `VERCEL_URL` y `VERCEL_PROJECT_PRODUCTION_URL` las aporta Vercel. Preview permanece sin indexación; los metadatos de Production utilizan el dominio de producción.
 
+`/catalogo` utiliza por defecto el WhatsApp comercial +57 3213390551 confirmado por el usuario el 8 de octubre de 2026. Opcionalmente, `WHATSAPP_NUMBER` sustituye ese contacto común y `WHATSAPP_MANI_NUMBER` y `WHATSAPP_YOPAL_NUMBER` permiten definir uno por sede, en formato internacional con sólo dígitos. Las variables vacías usan el contacto de respaldo; las no vacías e inválidas deshabilitan el envío afectado. Volver a desplegar después de cambiar estas variables. Consultar [catalog.md](catalog.md) para la precedencia y los datos de la carta provisional.
+
 ## Verificación tras el despliegue
 
 - Portada `/`: imágenes, carta y navegación en escritorio y móvil.
+- `/catalogo`: detalle desde una tarjeta de la portada, búsqueda, filtros, cantidades, persistencia del carrito y validación de entrega. Revisar el destinatario y texto de WhatsApp sin enviar pedidos reales durante la prueba.
 - `/api/health`: HTTP 200 y `{"success":true,"status":"ok","service":"web-api"}`.
 - `/robots.txt` y `/sitemap.xml`: dominio correcto y reglas del entorno.
 - `/api/v1/recurso-inexistente`: HTTP 404 en JSON.
 - Git conectado: los cambios posteriores a `main` generan nuevos deployments de producción.
 
-## Alcance publicado
+## Alcance de la entrega
 
-La landing está preparada técnicamente para Vercel. La carta conserva nombres, ingredientes y precios provisionales identificados en la página. «Pedir ahora» lleva a la carta; todavía no existe un sistema de pedidos. Las sedes solo muestran las ciudades confirmadas de Maní y Yopal. Para publicar una carta comercial definitiva hacen falta los datos y canales oficiales de la marca.
+El sitio está preparado técnicamente para Vercel e incluye catálogo, carrito y preparación del pedido por WhatsApp, autorizados el 8 de octubre de 2026. La carta conserva nombres, ingredientes y precios provisionales identificados en la página y el mensaje. «Pedir ahora» abre `/catalogo`; el negocio confirma disponibilidad, total y entrega desde WhatsApp. No hay pagos en línea ni registro de pedidos en servidor. Las sedes solo muestran las ciudades confirmadas de Maní y Yopal. Para publicar una carta comercial definitiva hacen falta los datos y canales oficiales de la marca. Este documento no confirma que los cambios se hayan desplegado remotamente.

@@ -3,5 +3,12 @@ import { site } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!site.indexable) return [];
-  return [{ url: site.url.origin, changeFrequency: "monthly", priority: 1 }];
+  return [
+    { url: site.url.origin, changeFrequency: "monthly", priority: 1 },
+    {
+      url: new URL("/catalogo", site.url).href,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+  ];
 }

@@ -27,7 +27,7 @@ export function Footer() {
           className="footer-navigation"
           aria-label="Navegación del pie de página"
         >
-          <Link href="/#carta">Carta</Link>
+          <Link href="/catalogo">Carta</Link>
           <Link href="/#esencia">La experiencia</Link>
           <Link href="/#sedes">Sedes</Link>
         </nav>

@@ -1,8 +1,9 @@
-# Arquitectura y límites de la primera entrega
+# Arquitectura y alcance actual
 
 ```text
 Navegador → Vercel CDN → Next.js App Router
                           ├─ Portada estática / Server Components
+                          ├─ /catalogo / carrito en navegador → WhatsApp
                           ├─ next/image / next/font local
                           └─ Route Handlers (Node.js)
                                └─ Servicios de servidor
@@ -12,15 +13,17 @@ Integración nativa de Next.js en Vercel. No necesita Express, servidor persiste
 
 ## Renderizado y caché
 
-La portada, sitemap y robots se generan estáticamente en build. La capa opcional `LandingMotion` es el límite cliente activo; las secciones y el encabezado permanecen como Server Components. `LandingMotion` importa solo GSAP de forma diferida: `IntersectionObserver` activa las entradas y un `WeakSet` conserva las ya reveladas; RAF calcula el parallax y los listeners nativos de media queries reconstruyen los efectos. Parallax de hasta 36px y tilt de hasta 3° se limitan a escritorio y a piezas de marca existentes; el hero fotográfico no recibe esos efectos. Se respetan cambios de movimiento reducido y se limpian observers, listeners, frames y contextos con `context.revert()`.
+La portada, sitemap y robots se generan estáticamente en build. En la portada, la capa opcional `LandingMotion` es el límite cliente activo; las secciones y el encabezado permanecen como Server Components. `LandingMotion` importa solo GSAP de forma diferida: `IntersectionObserver` activa las entradas y un `WeakSet` conserva las ya reveladas; RAF calcula el parallax y los listeners nativos de media queries reconstruyen los efectos. Parallax de hasta 36px y tilt de hasta 3° se limitan a escritorio y a piezas de marca existentes; el hero fotográfico no recibe esos efectos. Se respetan cambios de movimiento reducido y se limpian observers, listeners, frames y contextos con `context.revert()`.
 
-El rediseño del 5 de octubre de 2026 reproduce el hero y las tres tarjetas de la referencia Lovable. El hero usa la fotografía cerrada suministrada, optimizada a WebP; `next/image` la precarga a tamaño responsive. La carta usa tres WebP de la referencia con carga diferida. La cabecera se posiciona sobre el hero y el scroll continúa de forma nativa, sin altura adicional. En móvil se presenta el enlace directo «Ver menú» y las tarjetas se apilan en una columna. Los nombres, ingredientes y precios siguen siendo ejemplos provisionales; los enlaces no ejecutan pedidos.
+El rediseño del 5 de octubre de 2026 reproduce el hero y las tres tarjetas de la referencia Lovable. El hero usa la fotografía cerrada suministrada, optimizada a WebP; `next/image` la precarga a tamaño responsive. La carta usa tres WebP de la referencia con carga diferida. La cabecera se posiciona sobre el hero y el scroll continúa de forma nativa, sin altura adicional. En móvil se presenta el enlace directo «Ver menú» y las tarjetas se apilan en una columna. Los nombres, ingredientes y precios siguen siendo ejemplos provisionales. Desde la ampliación autorizada el 8 de octubre, los enlaces de menú y pedido llevan a `/catalogo`.
+
+`/catalogo` compone una página de servidor con un componente cliente para búsqueda, filtros, detalle y carrito. La página lee `searchParams` para abrir productos enlazados desde la portada. Los productos proceden de `catalog-data.ts`, compartido con la portada; no hay una API de productos ni revalidación remota. El navegador conserva únicamente identificadores y cantidades del carrito y calcula el subtotal con los precios del catálogo vigente. Nombre, dirección y observaciones permanecen en memoria hasta preparar el enlace a WhatsApp; no se almacenan pedidos en servidor. La configuración de teléfonos se lee mediante `server-only` y se valida por sede. Ver [catalog.md](catalog.md) para datos, configuración y comprobaciones.
 
 La referencia declara Montserrat pero no carga ningún FontFace, por lo que hero, cabecera y carta reproducen su Arial efectivamente visible. Montserrat local conserva el resto de las secciones mediante `next/font/local`, sin peticiones a Google. `HeroScroll`, `MobileNavigation`, Barlow Condensed y la secuencia anterior permanecen como material previo sin montarse ni descargarse en la portada actual.
 
 El módulo `BrandStory` se retiró de la portada por solicitud del usuario. La sección de detalles continúa directamente al cierre; `#sedes` identifica el pie de página con las ciudades confirmadas de Maní y Yopal. No quedan enlaces activos a `#historia` ni `#origen`.
 
-`/api/health` usa Node.js y `Cache-Control: no-store`, para verificar la función desplegada. `/api/v1` es una respuesta de infraestructura sin datos personalizados. No hay peticiones dinámicas innecesarias en la portada. Cuando exista catálogo, definir su revalidación; no desactivar toda la caché. Los datos personalizados requerirán lecturas dinámicas y autorización.
+`/api/health` usa Node.js y `Cache-Control: no-store`, para verificar la función desplegada. `/api/v1` es una respuesta de infraestructura sin datos personalizados. No hay peticiones dinámicas innecesarias en la portada. Si se conecta el catálogo a una fuente remota, definir su revalidación sin desactivar toda la caché. Los datos personalizados en servidor requerirán lecturas dinámicas y autorización.
 
 ## API
 
@@ -32,13 +35,13 @@ Zod valida `SITE_URL` y hosts Vercel. Preview usa el host de la rama, `noindex`,
 
 ## Seguridad
 
-Sin operaciones de escritura, autenticación ni PII en esta etapa. Cabeceras contra embedding, MIME sniffing y permisos innecesarios. CSP inicial con `frame-ancestors`, `object-src` y `base-uri`; no es una política completa de ejecución de scripts. Una CSP estricta se evaluará al añadir integraciones, considerando sus efectos sobre el renderizado estático.
+Sin operaciones de escritura de pedidos en servidor ni autenticación en esta etapa. El formulario del catálogo utiliza los datos que el cliente aporta para su mensaje de WhatsApp; no los guarda en el carrito persistido. Cabeceras contra embedding, MIME sniffing y permisos innecesarios. CSP inicial con `frame-ancestors`, `object-src` y `base-uri`; no es una política completa de ejecución de scripts. Una CSP estricta se evaluará al añadir integraciones, considerando sus efectos sobre el renderizado estático.
 
 Arquitectura preparada no equivale a autenticación, protección de pagos o rate limiting implementados. Antes de exponer endpoints de negocio, cumplir `src/server/README.md` e incorporar un limitador distribuido donde corresponda.
 
 ## Evolución sin implementaciones vacías
 
-- Catálogo: modelos, repositorio, servicio, Zod y GET `/api/v1/products`.
+- Catálogo remoto, cuando se requiera: modelos, repositorio, servicio, Zod y GET `/api/v1/products`.
 - Persistencia: PostgreSQL, pooling, cliente único de Prisma y migraciones versionadas; nunca migraciones por request ni filesystem persistente.
 - Operaciones protegidas: proveedor de autenticación, roles y permisos comprobados en servidor.
 - Pedidos/pagos: precios calculados en servidor, idempotencia y webhooks firmados.

@@ -78,18 +78,18 @@ export function MobileNavigation() {
         <Link href="/#esencia" onClick={() => setOpen(false)}>
           La experiencia
         </Link>
-        <Link href="/#carta" onClick={() => setOpen(false)}>
+        <Link href="/catalogo" onClick={() => setOpen(false)}>
           Carta
         </Link>
         <Link href="/#sedes" onClick={() => setOpen(false)}>
           Sedes
         </Link>
         <Link
-          href="/#detalles"
+          href="/catalogo"
           className="mobile-cta"
           onClick={() => setOpen(false)}
         >
-          Descubre Domo <ArrowRight />
+          Pedir ahora <ArrowRight />
         </Link>
       </nav>
     </div>

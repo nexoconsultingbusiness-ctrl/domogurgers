@@ -15,7 +15,7 @@ related_targets:
 
 Modo: Persuade. Rediseño del hero, encabezado y carta solicitado el 5 de octubre de 2026. El usuario fija la dirección y la composición mediante https://burger-bites-bloom.lovable.app/ y las dos capturas adjuntas; no se necesitan propuestas alternativas ni aprobación adicional de una composición ya elegida.
 
-El visitante reconoce una marca gastronómica y explora la carta de ejemplo. Acción principal «Descubre el menú» hacia #carta. «Encuéntranos», «Sedes» y las flechas de producto llevan a #sedes en el pie de página, donde se conservan las ciudades confirmadas de Maní y Yopal. «Pedir ahora» enlaza a #carta, como en la referencia; no existe un flujo de pedidos.
+El visitante reconoce una marca gastronómica y explora la carta de ejemplo. La ampliación autorizada el 8 de octubre de 2026 conecta «Descubre el menú», «Menú», «Ver menú», «Pedir ahora» y Carta del pie con `/catalogo`, donde se seleccionan productos, se arma el carrito y se prepara el pedido por WhatsApp. Las flechas de producto abren su detalle mediante `/catalogo?producto=<id>` y se añade «Ver catálogo y armar pedido» bajo la retícula. «Encuéntranos» y «Sedes» conservan el destino `#sedes` en el pie de página, con las ciudades confirmadas de Maní y Yopal. Esta extensión cambia los destinos y el recorrido; conserva la composición fotográfica de referencia y la condición provisional de la carta.
 
 Comp aprobado por instrucción directa: C:/Users/User/AppData/Local/Temp/codex-clipboard-7d32821b-a820-4857-aad9-36eceab61f3d.png (hero), C:/Users/User/AppData/Local/Temp/codex-clipboard-7128b830-030c-4da0-b643-f6947e47e3a0.png (carta). Estos archivos son evidencia de composición, no assets de la landing.
 
@@ -30,4 +30,4 @@ Inventario:
 
 La secuencia actual empieza hero → carta; la franja anterior deja de interponerse entre ambos. Se conservan experiencia, detalle y cierre existentes. El módulo de historia y sus filas de origen se retiraron por solicitud del usuario. El hero ya no monta HeroScroll ni descarga frames/video; aquellos assets y el módulo quedan archivados como material previo. Scroll nativo, contenido en servidor, reveals opcionales y zoom leve de fotos; movimiento reducido y ausencia de JavaScript mantienen toda la información.
 
-Pendiente de negocio: confirmar carta, precios, fotos reales, direcciones, horarios y canales de pedido.
+WhatsApp comercial confirmado el 8 de octubre de 2026: +57 3213390551. Pendiente de negocio: confirmar carta, precios, fotos reales, direcciones y horarios. El mensaje de la carta provisional se identifica como pedido de prueba; disponibilidad, entrega y pago se confirman con la sede.

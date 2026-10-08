@@ -34,7 +34,7 @@ export function Hero() {
             solo una hamburguesa.
           </p>
           <div className="reference-hero-actions">
-            <a className="reference-button" href="#carta">
+            <a className="reference-button" href="/catalogo">
               Descubre el menú <ArrowDown />
             </a>
             <a

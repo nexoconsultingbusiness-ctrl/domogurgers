@@ -1,42 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Star } from "@/components/ui/icons";
-
-// The reference supplies visual examples, not a confirmed commercial menu.
-const sampleMenu = [
-  {
-    name: "D'omo Doble",
-    label: "La favorita",
-    description:
-      "Doble smash, cheddar, cebolla caramelizada y salsa de la casa.",
-    price: 32900,
-    image: "/images/menu-doble.webp",
-    alt: "Imagen conceptual de una hamburguesa doble con cheddar y cebolla caramelizada",
-  },
-  {
-    name: "Bacon Royal",
-    label: "Irresistible",
-    description:
-      "Carne a la parrilla, bacon crocante, cheddar, pepinillos y salsa D'omo.",
-    price: 29900,
-    image: "/images/menu-bacon.webp",
-    alt: "Imagen conceptual de una hamburguesa con bacon, cheddar y pepinillos",
-  },
-  {
-    name: "Crispy Chicken",
-    label: "Nuevo",
-    description:
-      "Pollo extra crocante, lechuga fresca, pepinillos y salsa cremosa.",
-    price: 27900,
-    image: "/images/menu-pollo.webp",
-    alt: "Imagen conceptual de una hamburguesa de pollo crocante con lechuga y pepinillos",
-  },
-] as const;
-
-const priceFormat = new Intl.NumberFormat("es-CO", {
-  style: "currency",
-  currency: "COP",
-  maximumFractionDigits: 0,
-});
+import {
+  catalogIsProvisional,
+  catalogProducts,
+  formatPrice,
+} from "@/features/catalog/catalog-data";
 
 export function MenuSection() {
   return (
@@ -52,8 +21,8 @@ export function MenuSection() {
           </p>
         </div>
         <ul className="burger-menu-grid" role="list">
-          {sampleMenu.map((item) => (
-            <li key={item.name}>
+          {catalogProducts.slice(0, 3).map((item) => (
+            <li key={item.id}>
               <article className="burger-card">
                 <div className="burger-card-photo">
                   <Image
@@ -68,7 +37,7 @@ export function MenuSection() {
                   <div className="burger-card-title">
                     <h3>{item.name}</h3>
                     <data className="burger-card-price" value={item.price}>
-                      {priceFormat.format(item.price).replace(/\s/g, "")}
+                      {formatPrice(item.price)}
                     </data>
                   </div>
                   <p className="burger-card-description">{item.description}</p>
@@ -76,12 +45,12 @@ export function MenuSection() {
                     <span>
                       <Star /> Favorita D’omo
                     </span>
-                    <a
-                      href="#sedes"
-                      aria-label={`Ver sedes de DomoBurgers para ${item.name}`}
+                    <Link
+                      href={`/catalogo?producto=${item.id}`}
+                      aria-label={`Ver detalle de ${item.name}`}
                     >
                       <ArrowUpRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </article>
@@ -89,9 +58,16 @@ export function MenuSection() {
           ))}
         </ul>
         <p className="burger-menu-note">
-          Carta provisional · Nombres, ingredientes y precios de ejemplo en COP.
-          Imágenes conceptuales.
+          <Link className="reference-button" href="/catalogo">
+            Ver catálogo y armar pedido <ArrowUpRight />
+          </Link>
         </p>
+        {catalogIsProvisional && (
+          <p className="burger-menu-note">
+            Carta provisional · Nombres, ingredientes y precios de ejemplo en
+            COP. Imágenes conceptuales.
+          </p>
+        )}
       </div>
     </section>
   );

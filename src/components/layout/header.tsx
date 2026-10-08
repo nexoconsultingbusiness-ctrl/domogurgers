@@ -19,16 +19,19 @@ export function Header() {
           />
         </Link>
         <nav className="reference-navigation" aria-label="Navegación principal">
-          <Link href="/#carta">Menú</Link>
+          <Link href="/catalogo">Menú</Link>
           <Link href="/#sedes">Sedes</Link>
           <Link
             className="reference-button reference-header-cta"
-            href="/#carta"
+            href="/catalogo"
           >
             Pedir ahora <ArrowUpRight />
           </Link>
         </nav>
-        <Link className="reference-button reference-mobile-menu" href="/#carta">
+        <Link
+          className="reference-button reference-mobile-menu"
+          href="/catalogo"
+        >
           Ver menú
         </Link>
       </div>
