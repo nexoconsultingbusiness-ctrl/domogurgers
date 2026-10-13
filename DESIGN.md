@@ -248,7 +248,7 @@ La carta presenta tres artículos dentro de una superficie continua.
 
 - **Photo:** (4:3), cover y etiqueta amarilla superior izquierda. Con hover y puntero fino, escala (1.05) durante (700ms); movimiento reducido anula la transición.
 - **Copy:** nombre/precio, ingredientes, separador, estrella SVG y botón de contorno oro «Elegir», con flecha y altura mínima de (44px), hacia `/catalogo?producto=<id>` con nombre accesible del producto. Debajo de la retícula, «Ver catálogo y armar pedido» ofrece el acceso general.
-- **Truth:** D'omo Doble, Bacon Royal y Crispy Chicken son ejemplos provisionales en COP. Conservar el aviso de nombres, ingredientes, precios e imágenes de ejemplo mientras no exista carta confirmada.
+- **Truth:** la carta real se transcribió de las ocho fotografías entregadas el 12 de octubre de 2026. La portada destaca Tradicional, Bacon Cheese y Pollo Crispy; el catálogo contiene 58 opciones con precios en COP e ingredientes cuando están impresos. Los espacios de foto quedan identificados como «Foto próximamente» hasta que el usuario entregue las imágenes.
 - **Retained brand pieces:** foto de detalle con radio/sombra, lista descriptiva de valores, emblema negro sobre vino y sello circular oro, en Montserrat y con SVG originales.
 
 ### Navigation
@@ -257,18 +257,18 @@ Encabezado transparente con logo blanco original, «Catálogo», «Sedes» y acc
 
 ### Digital Catalog
 
-La ampliación de `/catalogo` conserva Arial, negro cálido, oro, fotografías existentes y controles rectangulares. Sus estilos locales viven en `src/features/catalog/catalog.module.css`; el flujo interactivo, en `src/features/catalog/catalog.tsx`. La dirección de esta superficie se registra en `.impeccable/surfaces/src-app-public-catalogo-page-tsx.md`.
+La ampliación de `/catalogo` conserva Arial, negro cálido, oro, fotografía de cabecera y controles rectangulares. Sus estilos locales viven en `src/features/catalog/catalog.module.css`; el flujo interactivo, en `src/features/catalog/catalog.tsx`. La dirección de esta superficie se registra en `.impeccable/surfaces/src-app-public-catalogo-page-tsx.md`.
 
-- **Product browsing:** cabecera fotográfica compacta con veladura y titular blanco/oro; filtros de categoría con selección oro, búsqueda con foco oro y contador de resultados. Retícula de tres columnas, dos bajo (960px) y una bajo (640px), con separación de (24px). Las tarjetas conservan foto (4:3), línea fina, etiqueta oro, precio visible y acciones diferenciadas de detalle y agregado.
-- **Detail and cart:** detalle en diálogo nativo centrado, de hasta (560px); carrito en panel lateral derecho del mismo ancho máximo y alto de (100dvh). En móvil ocupan todo el ancho. Fondo oscurecido, encabezado persistente con cierre, retorno de foco y Escape; cantidades con controles de (44px). El carrito flotante oro muestra cantidad y subtotal cuando hay productos; una notificación breve confirma los agregados.
+- **Product browsing:** cabecera fotográfica compacta con veladura y titular blanco/oro; filtros de ocho categorías con selección oro, búsqueda con foco oro y contador de resultados. Cada categoría tiene título y cantidad de opciones. Retícula de tres columnas, dos bajo (960px) y una bajo (640px), con separación de (24px). Las tarjetas conservan espacio de foto (4:3), línea fina, etiqueta oro, precio visible y acciones diferenciadas de detalle y agregado. Adicionales, bebidas y micheladas usan tarjetas compactas con espacio de foto cuadrado de (72px).
+- **Detail and cart:** detalle en diálogo nativo centrado, de hasta (560px), con ingredientes y opción de combo por $10.500 adicionales: casilla, selector de bebida y total según cantidad. El combo aplica a cualquier producto. Carrito en panel lateral derecho del mismo ancho máximo y alto de (100dvh), con líneas separadas para producto solo y cada bebida elegida. En móvil ocupan todo el ancho. Fondo oscurecido, encabezado persistente con cierre, retorno de foco y Escape; cantidades con controles de (44px). El carrito flotante oro muestra cantidad y subtotal cuando hay productos; una notificación breve confirma los agregados.
 - **Order fields:** campos rectangulares sobre negro cálido, borde fino, texto de (16px) y altura mínima de (48px); foco oro de (2px). Nombre, sede, recogida o domicilio, dirección condicional y notas preceden al subtotal y la acción WhatsApp. Los errores usan texto coral; los avisos de configuración y el subtotal destacan en oro. Los estados vacíos ofrecen volver al menú.
-- **State and truth:** selección visible de filtros, cantidades en tarjeta, controles deshabilitados en los límites y avisos provisionales en catálogo, detalle y carrito. La acción prepara un mensaje para confirmar con el negocio; no presenta el pedido como pagado o aceptado. Movimiento reducido elimina las transiciones, incluido el zoom fotográfico leve.
+- **State and truth:** selección visible de filtros, cantidades en tarjeta, controles deshabilitados en los límites y espacios de fotografía pendientes. La carta usa productos, ingredientes y precios suministrados; el resumen de WhatsApp conserva combos, bebidas y recargo por unidad. La acción prepara un mensaje para confirmar con el negocio; no presenta el pedido como pagado o aceptado. Movimiento reducido elimina las transiciones, incluido el zoom fotográfico leve.
 
 ### Brand Assets
 
 Los SVG en `public/brand/` conservan procedencia, proporciones y colores: blanco en encabezado, negro en sello y wordmark blanco en pie. El logo oro del módulo de historia queda como asset de marca sin montarse. Su documentación está en `public/brand/README.md`.
 
-El hero sirve `burger-reference-hero.webp`, optimizado desde el JPG cerrado del usuario, con preload y `sizes="(max-aspect-ratio: 16/9) 164svh, 100vw"` para cubrir también el ancho fotográfico necesario en retratos altos. La carta usa `menu-doble.webp`, `menu-bacon.webp` y `menu-pollo.webp`, tomadas de la URL autorizada. Detalle y cierre conservan sus imágenes anteriores. Las imágenes informativas tienen alt conceptual; el hero es decorativo. Procedencia y hashes están en `docs/asset-manifest.md`.
+El hero sirve `burger-reference-hero.webp`, optimizado desde el JPG cerrado del usuario, con preload y `sizes="(max-aspect-ratio: 16/9) 164svh, 100vw"` para cubrir también el ancho fotográfico necesario en retratos altos. Los assets `menu-doble.webp`, `menu-bacon.webp` y `menu-pollo.webp` se conservan como material de la carta anterior; los productos reales reservan sus fotos mediante `image: null` y el componente compartido `ProductImage`. Detalle de marca y cierre conservan sus imágenes anteriores. Las fotos de producto usarán su nombre como texto alternativo; el hero es decorativo. Procedencia y hashes están en `docs/asset-manifest.md`.
 
 El sidecar muestra snippets autónomos de ambos lenguajes vigentes, con SVG inline, fotos embebidas y estados de interacción. Las rampas sintetizadas solo previsualizan color; no añaden tonos de aplicación.
 
@@ -280,13 +280,13 @@ El sidecar muestra snippets autónomos de ambos lenguajes vigentes, con SVG inli
 - **Do** usar Arial en las regiones de referencia y Montserrat local en las secciones de marca conservadas.
 - **Do** mantener controles rectangulares, fotos (4:3) y líneas compartidas en la carta.
 - **Do** dimensionar las fuentes de imagen para el recorte cover, también en móvil.
-- **Do** conservar aviso provisional, alt conceptual, foco visible y destinos internos verdaderos.
+- **Do** usar los datos suministrados del menú, identificar las fotos pendientes y conservar foco visible y destinos internos verdaderos.
 - **Do** mantener scroll nativo, contenido visible y límites de movimiento reducido.
 
 ### Don't:
 
 - **Don't** redibujar, recolorear ni recortar internamente los logos originales.
 - **Don't** reintroducir la secuencia animada anterior en el hero vigente.
-- **Don't** convertir la carta de ejemplo o «Pedir ahora» en oferta o compra confirmada.
+- **Don't** presentar el mensaje preparado por «Pedir ahora» como un pedido aceptado o pagado.
 - **Don't** usar microtexto de sellos o letras de contorno para contenido esencial.
 - **Don't** generalizar recursos específicos de la referencia a las secciones conservadas sin nueva dirección autorizada.

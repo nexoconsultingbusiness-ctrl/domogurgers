@@ -1,15 +1,26 @@
 import {
   catalogProducts,
+  catalogCombo,
   formatPrice,
+  getComboLabel,
+  isComboBeverage,
   type CatalogProduct,
+  type ComboBeverage,
 } from "./catalog-data";
 
 export const MAX_ITEM_QUANTITY = 99;
 
-export type CartLine = { productId: string; quantity: number };
+export type CartLine = {
+  productId: string;
+  quantity: number;
+  comboBeverage?: ComboBeverage;
+};
 export type ResolvedCartLine = {
   product: CatalogProduct;
   quantity: number;
+  comboBeverage?: ComboBeverage;
+  comboLabel: string | null;
+  unitPrice: number;
   lineTotal: number;
 };
 export type OrderDetails = {
@@ -26,39 +37,61 @@ const productsById = new Map(
   catalogProducts.map((product) => [product.id, product]),
 );
 
-/** Restore only known product IDs and integer quantities, never persisted prices. */
+export function getCartLineKey(
+  line: Pick<CartLine, "productId" | "comboBeverage">,
+) {
+  return `${line.productId}:${line.comboBeverage ?? "solo"}`;
+}
+
+/** Restore known products, combo choices and integer quantities, never prices. */
 export function normalizeCart(value: unknown): CartLine[] {
   if (!Array.isArray(value)) return [];
 
-  const quantities = new Map<string, number>();
+  const lines = new Map<string, CartLine>();
   for (const entry of value) {
     if (typeof entry !== "object" || entry === null) continue;
-    const { productId, quantity } = entry as Record<string, unknown>;
+    const { productId, quantity, comboBeverage } = entry as Record<
+      string,
+      unknown
+    >;
     if (
       typeof productId !== "string" ||
       !productsById.has(productId) ||
       typeof quantity !== "number" ||
       !Number.isSafeInteger(quantity) ||
-      quantity <= 0
+      quantity <= 0 ||
+      (comboBeverage !== undefined && !isComboBeverage(comboBeverage))
     ) {
       continue;
     }
-    quantities.set(
+    const line: CartLine = {
       productId,
-      Math.min(MAX_ITEM_QUANTITY, (quantities.get(productId) ?? 0) + quantity),
+      quantity,
+      ...(isComboBeverage(comboBeverage) ? { comboBeverage } : {}),
+    };
+    const key = getCartLineKey(line);
+    line.quantity = Math.min(
+      MAX_ITEM_QUANTITY,
+      (lines.get(key)?.quantity ?? 0) + quantity,
     );
+    lines.set(key, line);
   }
-  return Array.from(quantities, ([productId, quantity]) => ({
-    productId,
-    quantity,
-  }));
+  return Array.from(lines.values());
 }
 
 export function resolveCart(cart: readonly CartLine[]): ResolvedCartLine[] {
-  return normalizeCart(cart).map(({ productId, quantity }) => {
+  return normalizeCart(cart).map(({ productId, quantity, comboBeverage }) => {
     // normalizeCart admits only IDs present in this trusted catalog.
     const product = productsById.get(productId)!;
-    return { product, quantity, lineTotal: product.price * quantity };
+    const unitPrice = product.price + (comboBeverage ? catalogCombo.price : 0);
+    return {
+      product,
+      quantity,
+      comboBeverage,
+      comboLabel: comboBeverage ? getComboLabel(comboBeverage) : null,
+      unitPrice,
+      lineTotal: unitPrice * quantity,
+    };
   });
 }
 
@@ -75,37 +108,43 @@ export function addToCart(
   cart: readonly CartLine[],
   productId: string,
   quantity = 1,
+  comboBeverage?: ComboBeverage,
 ): CartLine[] {
-  return normalizeCart([...cart, { productId, quantity }]);
+  return normalizeCart([...cart, { productId, quantity, comboBeverage }]);
 }
 
 export function setCartQuantity(
   cart: readonly CartLine[],
   productId: string,
   quantity: number,
+  comboBeverage?: ComboBeverage,
 ): CartLine[] {
   const normalized = normalizeCart(cart);
   if (!Number.isSafeInteger(quantity) || quantity < 0) return normalized;
-  const remaining = normalized.filter((item) => item.productId !== productId);
+  const key = getCartLineKey({ productId, comboBeverage });
+  const remaining = normalized.filter((item) => getCartLineKey(item) !== key);
   if (quantity === 0) return remaining;
   const existingIndex = normalized.findIndex(
-    (item) => item.productId === productId,
+    (item) => getCartLineKey(item) === key,
   );
   if (existingIndex >= 0) {
     normalized[existingIndex] = {
       productId,
       quantity: Math.min(quantity, MAX_ITEM_QUANTITY),
+      ...(comboBeverage ? { comboBeverage } : {}),
     };
     return normalized;
   }
-  return normalizeCart([...remaining, { productId, quantity }]);
+  return normalizeCart([...remaining, { productId, quantity, comboBeverage }]);
 }
 
 export function removeFromCart(
   cart: readonly CartLine[],
   productId: string,
+  comboBeverage?: ComboBeverage,
 ): CartLine[] {
-  return normalizeCart(cart).filter((item) => item.productId !== productId);
+  const key = getCartLineKey({ productId, comboBeverage });
+  return normalizeCart(cart).filter((item) => getCartLineKey(item) !== key);
 }
 
 export function validateOrderDetails(details: OrderDetails): OrderErrors {
@@ -166,8 +205,8 @@ export function buildWhatsAppMessage(
       : []),
     "",
     ...items.map(
-      ({ product, quantity, lineTotal }) =>
-        `${quantity} × ${product.name} (${formatPrice(product.price)} c/u): ${formatPrice(lineTotal)}`,
+      ({ product, quantity, lineTotal, unitPrice, comboLabel }) =>
+        `${quantity} × ${product.name}${comboLabel ? ` + ${comboLabel}` : ""} (${formatPrice(unitPrice)} c/u): ${formatPrice(lineTotal)}`,
     ),
     "",
     `Subtotal de productos: ${formatPrice(subtotal)} COP`,

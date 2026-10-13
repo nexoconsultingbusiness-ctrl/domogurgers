@@ -10,16 +10,21 @@ import {
 } from "react";
 import {
   catalogCategories,
+  catalogSections,
+  catalogCombo,
   catalogIsProvisional,
   catalogProducts,
   formatPrice,
+  isComboBeverage,
   type CatalogProduct,
+  type ComboBeverage,
 } from "./catalog-data";
 import {
   addToCart,
   MAX_ITEM_QUANTITY,
   buildWhatsAppUrl,
   getCartSummary,
+  getCartLineKey,
   removeFromCart,
   setCartQuantity,
   validateOrderDetails,
@@ -27,6 +32,7 @@ import {
 } from "./order";
 import { useCart } from "./use-cart";
 import { CatalogIcon } from "./catalog-icons";
+import { ProductImage } from "./product-image";
 import styles from "./catalog.module.css";
 
 type CatalogProps = {
@@ -38,6 +44,9 @@ function normalizeSearch(value: string) {
   return value
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replaceAll("×", "x")
+    .replaceAll("½", "1/2")
+    .replace(/[-–—]/g, " ")
     .toLowerCase()
     .trim();
 }
@@ -153,6 +162,9 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
     () => catalogProducts.find((item) => item.id === initialProductId) ?? null,
   );
   const [productQuantity, setProductQuantity] = useState(1);
+  const [comboBeverage, setComboBeverage] = useState<
+    ComboBeverage | undefined
+  >();
   const [cartOpen, setCartOpen] = useState(false);
   const [notice, setNotice] = useState("");
   const [details, setDetails] = useState<OrderDetails>(initialDetails);
@@ -161,15 +173,26 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
   const phone = whatsAppPhones[details.branch];
   const remainingQuantity =
     MAX_ITEM_QUANTITY -
-    (cart.find((line) => line.productId === product?.id)?.quantity ?? 0);
+    (cart.find(
+      (line) =>
+        line.productId === product?.id && line.comboBeverage === comboBeverage,
+    )?.quantity ?? 0);
   const quantityToAdd = Math.min(productQuantity, remainingQuantity);
+  const productUnitPrice =
+    (product?.price ?? 0) + (comboBeverage ? catalogCombo.price : 0);
   const filtered = catalogProducts.filter(
     (item) =>
       (category === "all" || item.category === category) &&
-      normalizeSearch(`${item.name} ${item.description}`).includes(
-        normalizeSearch(search),
-      ),
+      normalizeSearch(
+        `${item.name} ${item.description} ${item.label} ${item.notes}`,
+      ).includes(normalizeSearch(search)),
   );
+  const sections = catalogSections
+    .map((section) => ({
+      ...section,
+      products: filtered.filter((item) => item.category === section.id),
+    }))
+    .filter((section) => section.products.length > 0);
 
   useEffect(() => {
     if (!notice) return;
@@ -177,19 +200,26 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
     return () => window.clearTimeout(timeout);
   }, [notice]);
 
-  function addProduct(item: CatalogProduct, quantity = 1) {
+  function addProduct(
+    item: CatalogProduct,
+    quantity = 1,
+    beverage?: ComboBeverage,
+  ) {
     const current =
-      cart.find((line) => line.productId === item.id)?.quantity ?? 0;
-    updateCart((previous) => addToCart(previous, item.id, quantity));
+      cart.find(
+        (line) => line.productId === item.id && line.comboBeverage === beverage,
+      )?.quantity ?? 0;
+    updateCart((previous) => addToCart(previous, item.id, quantity, beverage));
     setNotice(
       current >= 99
         ? "Llegaste al máximo de 99 unidades de este producto."
-        : `${item.name} en tu carrito${current + quantity > 99 ? " · Máximo 99 unidades" : ""}.`,
+        : `${item.name}${beverage ? " con combo" : ""} en tu carrito${current + quantity > 99 ? " · Máximo 99 unidades" : ""}.`,
     );
   }
 
   function openProduct(item: CatalogProduct) {
     setProductQuantity(1);
+    setComboBeverage(undefined);
     setProduct(item);
   }
 
@@ -224,11 +254,12 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
     <div className={styles.catalog}>
       <section className={styles.intro} aria-labelledby="catalog-title">
         <Image
-          src="/images/burger-reference-hero.webp"
+          src="/images/catalog-cover.webp"
           alt=""
           loading="eager"
+          quality={90}
           fill
-          sizes="100vw"
+          sizes="(max-width: 959px) 960px, 100vw"
           className={styles.introPhoto}
         />
         <div className={`reference-container ${styles.introContent}`}>
@@ -238,7 +269,7 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
             <span>Tu pedido.</span>
           </h1>
           <p>
-            Elige tus burgers favoritas, arma tu carrito y pide por WhatsApp.
+            Burgers, perros, picadas y más. Arma tu carrito y pide por WhatsApp.
           </p>
           <span className={styles.locations}>Maní & Yopal · Casanare</span>
         </div>
@@ -262,6 +293,11 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
             Carta de demostración · Productos, precios e imágenes provisionales.
           </p>
         )}
+        <p className={styles.comboNote}>
+          Agrega papas y bebida a cualquier producto por{" "}
+          <strong>+{formatPrice(catalogCombo.price)}</strong>. Elige tu combo en
+          «Ver detalles».
+        </p>
         <div className={styles.toolbar}>
           <div
             className={styles.categories}
@@ -308,67 +344,99 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
           {filtered.length} {filtered.length === 1 ? "producto" : "productos"}
           {search ? ` para “${search}”` : " para elegir"}
         </p>
-        <ul className={styles.productGrid}>
-          {filtered.map((item) => {
-            const quantity =
-              cart.find((line) => line.productId === item.id)?.quantity ?? 0;
-            return (
-              <li key={item.id}>
-                <article className={styles.productCard}>
-                  <button
-                    type="button"
-                    className={styles.productPhoto}
-                    aria-label={`Ver detalle de ${item.name}`}
-                    onClick={() => openProduct(item)}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 959px) calc((100vw - 88px) / 2), (max-width: 1439px) calc((100vw - 144px) / 3), 432px"
-                    />
-                    <span className={styles.productLabel}>{item.label}</span>
-                    {quantity > 0 && (
-                      <span className={styles.inCart}>
-                        {quantity} en tu carrito
-                      </span>
-                    )}
-                  </button>
-                  <div className={styles.productCopy}>
-                    <div className={styles.productHeading}>
-                      <h3>
-                        <button type="button" onClick={() => openProduct(item)}>
-                          {item.name}
-                        </button>
-                      </h3>
-                      <span>{formatPrice(item.price)}</span>
-                    </div>
-                    <p>{item.description}</p>
-                    <div className={styles.productActions}>
+        {sections.map((section) => (
+          <section
+            key={section.id}
+            className={styles.menuSection}
+            aria-labelledby={`category-${section.id}`}
+          >
+            <div className={styles.sectionHeading}>
+              <h3 id={`category-${section.id}`}>{section.label}</h3>
+              <span>
+                {section.products.length}{" "}
+                {section.products.length === 1 ? "opción" : "opciones"}
+              </span>
+            </div>
+            <ul
+              className={`${styles.productGrid} ${section.compact ? styles.compactGrid : ""}`}
+            >
+              {section.products.map((item) => {
+                const quantity = cart
+                  .filter((line) => line.productId === item.id)
+                  .reduce((total, line) => total + line.quantity, 0);
+                const plainQuantity =
+                  cart.find(
+                    (line) => line.productId === item.id && !line.comboBeverage,
+                  )?.quantity ?? 0;
+                return (
+                  <li key={item.id}>
+                    <article className={styles.productCard}>
                       <button
                         type="button"
-                        className={styles.detailLink}
+                        className={styles.productPhoto}
+                        aria-label={`Ver detalle de ${item.name}`}
                         onClick={() => openProduct(item)}
-                        aria-label={`Ver ingredientes de ${item.name}`}
                       >
-                        Ver detalles
+                        {/* Landscape sources need extra pixels to cover a 4:3 frame. */}
+                        <ProductImage
+                          product={item}
+                          thumbnail={section.compact}
+                          sizes={
+                            section.compact
+                              ? "72px"
+                              : "(max-width: 639px) calc(133.34vw - 53.34px), (max-width: 959px) calc((133.34vw - 117.34px) / 2), (max-width: 1439px) calc((133.34vw - 192px) / 3), 576px"
+                          }
+                        />
+                        <span className={styles.productLabel}>
+                          {item.label}
+                        </span>
+                        {quantity > 0 && (
+                          <span className={styles.inCart}>
+                            {quantity}
+                            {section.compact ? "" : " en tu carrito"}
+                          </span>
+                        )}
                       </button>
-                      <button
-                        type="button"
-                        className={styles.addButton}
-                        disabled={quantity >= 99}
-                        aria-label={`Agregar ${item.name} al carrito`}
-                        onClick={() => addProduct(item)}
-                      >
-                        <CatalogIcon name="plus" /> Agregar
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
+                      <div className={styles.productCopy}>
+                        <div className={styles.productHeading}>
+                          <h4>
+                            <button
+                              type="button"
+                              onClick={() => openProduct(item)}
+                            >
+                              {item.name}
+                            </button>
+                          </h4>
+                          <span>{formatPrice(item.price)}</span>
+                        </div>
+                        {item.description && <p>{item.description}</p>}
+                        <div className={styles.productActions}>
+                          <button
+                            type="button"
+                            className={styles.detailLink}
+                            onClick={() => openProduct(item)}
+                            aria-label={`Ver detalles y combo de ${item.name}`}
+                          >
+                            Ver detalles
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.addButton}
+                            disabled={plainQuantity >= 99}
+                            aria-label={`Agregar ${item.name} al carrito`}
+                            onClick={() => addProduct(item)}
+                          >
+                            <CatalogIcon name="plus" /> Agregar
+                          </button>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ))}
         {!filtered.length && (
           <div className={styles.emptySearch}>
             <h3>No encontramos ese antojo</h3>
@@ -417,11 +485,10 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
       {product && (
         <Modal title="Detalle del producto" onClose={() => setProduct(null)}>
           <div className={styles.detailPhoto}>
-            <Image
-              src={product.image}
-              alt={product.alt}
-              loading="eager"
-              fill
+            <ProductImage
+              product={product}
+              eager
+              contain
               sizes="(max-width: 639px) 100vw, 560px"
             />
           </div>
@@ -430,12 +497,60 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
               <h3>{product.name}</h3>
               <strong>{formatPrice(product.price)}</strong>
             </div>
-            <p>{product.description}</p>
+            {product.ingredients.length > 0 && (
+              <div className={styles.ingredients}>
+                <h4>Ingredientes</h4>
+                <ul>
+                  {product.ingredients.map((ingredient) => (
+                    <li key={ingredient}>{ingredient}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {product.notes && <p>{product.notes}</p>}
             {catalogIsProvisional && (
               <p className={styles.smallNote}>
                 Producto de demostración. Ingredientes y precio por confirmar.
               </p>
             )}
+            <div className={styles.comboOption}>
+              <label className={styles.comboToggle}>
+                <input
+                  type="checkbox"
+                  checked={Boolean(comboBeverage)}
+                  onChange={(event) =>
+                    setComboBeverage(
+                      event.target.checked ? "coca-cola" : undefined,
+                    )
+                  }
+                />
+                <span>
+                  <strong>
+                    Agregar combo · +{formatPrice(catalogCombo.price)}
+                  </strong>
+                  <small>Papas y una bebida a elección</small>
+                </span>
+              </label>
+              {comboBeverage && (
+                <div className={styles.comboBeverage}>
+                  <label htmlFor="combo-beverage">Bebida del combo</label>
+                  <select
+                    id="combo-beverage"
+                    value={comboBeverage}
+                    onChange={(event) => {
+                      if (isComboBeverage(event.target.value))
+                        setComboBeverage(event.target.value);
+                    }}
+                  >
+                    {catalogCombo.beverages.map((beverage) => (
+                      <option key={beverage.id} value={beverage.id}>
+                        {beverage.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
             <div className={styles.detailQuantity}>
               <span>Cantidad</span>
               <Quantity
@@ -450,14 +565,14 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
               className={styles.primaryButton}
               disabled={remainingQuantity === 0}
               onClick={() => {
-                addProduct(product, quantityToAdd);
+                addProduct(product, quantityToAdd, comboBeverage);
                 setProduct(null);
               }}
             >
               <CatalogIcon name="plus" />{" "}
               {remainingQuantity === 0
                 ? "Máximo de 99 unidades en tu carrito"
-                : `Agregar al carrito · ${formatPrice(product.price * quantityToAdd)}`}
+                : `Agregar al carrito · ${formatPrice(productUnitPrice * quantityToAdd)}`}
             </button>
           </div>
         </Modal>
@@ -473,7 +588,7 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
             <div className={styles.emptyCart}>
               <CatalogIcon name="bag" />
               <h3>Tu próximo antojo empieza aquí</h3>
-              <p>Agrega una burger para armar tu pedido.</p>
+              <p>Elige tus productos favoritos para armar tu pedido.</p>
               <button
                 type="button"
                 className={styles.primaryButton}
@@ -485,39 +600,64 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
           ) : (
             <div className={styles.cartBody}>
               <ul className={styles.cartItems}>
-                {summary.items.map(({ product: item, quantity, lineTotal }) => (
-                  <li key={item.id} className={styles.cartItem}>
-                    <Image src={item.image} alt="" width={80} height={80} />
-                    <div className={styles.cartItemInfo}>
-                      <h3>{item.name}</h3>
-                      <p>{formatPrice(item.price)} / unidad</p>
-                      <Quantity
-                        value={quantity}
-                        name={item.name}
-                        onChange={(value) =>
-                          updateCart((previous) =>
-                            setCartQuantity(previous, item.id, value),
-                          )
-                        }
-                      />
-                    </div>
-                    <div className={styles.cartItemEnd}>
-                      <button
-                        type="button"
-                        className={styles.iconButton}
-                        aria-label={`Eliminar ${item.name}`}
-                        onClick={() =>
-                          updateCart((previous) =>
-                            removeFromCart(previous, item.id),
-                          )
-                        }
-                      >
-                        <CatalogIcon name="trash" />
-                      </button>
-                      <strong>{formatPrice(lineTotal)}</strong>
-                    </div>
-                  </li>
-                ))}
+                {summary.items.map(
+                  ({
+                    product: item,
+                    quantity,
+                    lineTotal,
+                    unitPrice,
+                    comboBeverage: beverage,
+                    comboLabel,
+                  }) => (
+                    <li
+                      key={getCartLineKey({
+                        productId: item.id,
+                        comboBeverage: beverage,
+                      })}
+                      className={styles.cartItem}
+                    >
+                      <div className={styles.cartPhoto}>
+                        <ProductImage product={item} sizes="72px" thumbnail />
+                      </div>
+                      <div className={styles.cartItemInfo}>
+                        <h3>{item.name}</h3>
+                        {comboLabel && (
+                          <p className={styles.cartCombo}>{comboLabel}</p>
+                        )}
+                        <p>{formatPrice(unitPrice)} / unidad</p>
+                        <Quantity
+                          value={quantity}
+                          name={`${item.name}${comboLabel ? ` · ${comboLabel}` : ""}`}
+                          onChange={(value) =>
+                            updateCart((previous) =>
+                              setCartQuantity(
+                                previous,
+                                item.id,
+                                value,
+                                beverage,
+                              ),
+                            )
+                          }
+                        />
+                      </div>
+                      <div className={styles.cartItemEnd}>
+                        <button
+                          type="button"
+                          className={styles.iconButton}
+                          aria-label={`Eliminar ${item.name}${comboLabel ? ` · ${comboLabel}` : ""}`}
+                          onClick={() =>
+                            updateCart((previous) =>
+                              removeFromCart(previous, item.id, beverage),
+                            )
+                          }
+                        >
+                          <CatalogIcon name="trash" />
+                        </button>
+                        <strong>{formatPrice(lineTotal)}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
               </ul>
               <button
                 type="button"

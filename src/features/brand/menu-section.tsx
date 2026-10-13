@@ -1,11 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Star } from "@/components/ui/icons";
 import {
   catalogIsProvisional,
-  catalogProducts,
+  featuredProducts,
   formatPrice,
 } from "@/features/catalog/catalog-data";
+import { ProductImage } from "@/features/catalog/product-image";
 
 export function MenuSection() {
   return (
@@ -17,19 +17,19 @@ export function MenuSection() {
             <h2 id="menu-title">Nuestras burgers</h2>
           </div>
           <p className="burger-menu-intro">
-            Preparadas al momento, con carne jugosa y pan brioche dorado.
+            Conoce los ingredientes, elige tu burger y agrégale un combo de
+            papas y bebida.
           </p>
         </div>
         <ul className="burger-menu-grid" role="list">
-          {catalogProducts.slice(0, 3).map((item) => (
+          {featuredProducts.map((item) => (
             <li key={item.id}>
               <article className="burger-card">
                 <div className="burger-card-photo">
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 767px) calc(100vw - 64px), (max-width: 1023px) calc((100vw - 66px) / 3), (max-width: 1439px) calc((100vw - 98px) / 3), 448px"
+                  {/* Landscape sources need extra pixels to cover a 4:3 frame. */}
+                  <ProductImage
+                    product={item}
+                    sizes="(max-width: 639px) calc(133.34vw - 53.34px), (max-width: 767px) calc(133.34vw - 85.34px), (max-width: 1023px) calc((133.34vw - 88px) / 3), (max-width: 1439px) calc((133.34vw - 130.67px) / 3), 598px"
                   />
                   <span className="burger-card-label">{item.label}</span>
                 </div>
@@ -43,7 +43,7 @@ export function MenuSection() {
                   <p className="burger-card-description">{item.description}</p>
                   <div className="burger-card-bottom">
                     <span>
-                      <Star /> Favorita D’omo
+                      <Star /> D’omo Burgers
                     </span>
                     <Link
                       href={`/catalogo?producto=${item.id}`}

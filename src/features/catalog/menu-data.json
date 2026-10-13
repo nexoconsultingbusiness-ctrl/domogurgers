@@ -1,0 +1,835 @@
+{
+  "currency": "COP",
+  "sourceDate": "2026-10-12",
+  "categories": [
+    {
+      "id": "hamburguesas",
+      "label": "Hamburguesas",
+      "compact": false
+    },
+    {
+      "id": "perros",
+      "label": "Perros y choripán",
+      "compact": false
+    },
+    {
+      "id": "picadas",
+      "label": "Picadas",
+      "compact": false
+    },
+    {
+      "id": "entradas",
+      "label": "Entradas",
+      "compact": false
+    },
+    {
+      "id": "infantil",
+      "label": "Menú infantil",
+      "compact": false
+    },
+    {
+      "id": "adicionales",
+      "label": "Adicionales",
+      "compact": true
+    },
+    {
+      "id": "bebidas",
+      "label": "Bebidas",
+      "compact": true
+    },
+    {
+      "id": "micheladas",
+      "label": "Micheladas",
+      "compact": true
+    }
+  ],
+  "products": [
+    {
+      "id": "bacon-cheese",
+      "category": "hamburguesas",
+      "name": "Bacon Cheese",
+      "price": 46900,
+      "ingredients": [
+        "Pan especial",
+        "3 carnes de 150 g",
+        "4 quesos",
+        "4 tocinetas",
+        "Pepinillos o papa ripio"
+      ],
+      "image": "/images/products/bacon-cheese.webp",
+      "sourcePhotos": [1]
+    },
+    {
+      "id": "churry",
+      "category": "hamburguesas",
+      "name": "Churry",
+      "price": 35900,
+      "ingredients": [
+        "Pan especial",
+        "2 carnes de 150 g",
+        "Tocineta picada",
+        "Queso cheddar",
+        "Queso doble crema",
+        "Cebolla en cubos",
+        "Mayochurry"
+      ],
+      "image": "/images/products/churry.webp",
+      "imagePreview": "/images/products/previews/churry.webp",
+      "sourcePhotos": [1, 5]
+    },
+    {
+      "id": "pollo-crispy",
+      "category": "hamburguesas",
+      "name": "Pollo Crispy",
+      "price": 33500,
+      "ingredients": [
+        "Pan especial",
+        "Pollo crispy",
+        "Queso doble crema",
+        "Pepinillos americanos",
+        "Cebolla",
+        "Tomate fresco",
+        "Lechuga",
+        "Tártara de la casa"
+      ],
+      "image": "/images/products/pollo-crispy.webp",
+      "sourcePhotos": [5]
+    },
+    {
+      "id": "carnalita",
+      "category": "hamburguesas",
+      "name": "Carnalita",
+      "price": 32500,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Queso cheddar",
+        "Guacamole",
+        "Maíz tierno",
+        "Asada de res con queso doble crema",
+        "Tacos",
+        "Salsa guacamole"
+      ],
+      "image": "/images/products/carnalita.webp",
+      "imagePreview": "/images/products/previews/carnalita.webp",
+      "imagePosition": "center 30%",
+      "sourcePhotos": [4, 5],
+      "notes": "Con picante o sin picante. Indica tu preferencia en las notas del pedido."
+    },
+    {
+      "id": "chancha",
+      "category": "hamburguesas",
+      "name": "Chancha",
+      "price": 33900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "2 quesos doble crema",
+        "Plátano maduro",
+        "Tocino carnudo",
+        "Salsa ranch",
+        "Salsa BBQ",
+        "Cebolla grille",
+        "Tomate",
+        "Lechuga"
+      ],
+      "image": "/images/products/chancha.webp",
+      "sourcePhotos": [4]
+    },
+    {
+      "id": "gaucha",
+      "category": "hamburguesas",
+      "name": "Gaucha",
+      "price": 31500,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Chorizo argentino",
+        "Queso cheddar",
+        "Queso doble crema",
+        "Lechuga",
+        "Tomate",
+        "Cebolla",
+        "Salsa de la casa",
+        "Chimichurry"
+      ],
+      "image": "/images/products/gaucha.webp",
+      "sourcePhotos": [3, 4]
+    },
+    {
+      "id": "urbana",
+      "category": "hamburguesas",
+      "name": "Urbana",
+      "price": 18900,
+      "ingredients": [
+        "Pan de ajonjolí",
+        "Carne de 150 g",
+        "Queso cheddar",
+        "Papa ripio",
+        "Salsa BBQ",
+        "Salsas de la casa"
+      ],
+      "image": "/images/products/urbana.webp",
+      "sourcePhotos": [3]
+    },
+    {
+      "id": "house",
+      "category": "hamburguesas",
+      "name": "House",
+      "price": 17900,
+      "ingredients": [
+        "Pan de ajonjolí",
+        "Carne de 150 g",
+        "Queso doble crema",
+        "Lechuga",
+        "Tomate",
+        "Cebolla grille",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/house.webp",
+      "sourcePhotos": [3]
+    },
+    {
+      "id": "monster",
+      "category": "hamburguesas",
+      "name": "Monster",
+      "price": 49900,
+      "ingredients": [
+        "Pan especial",
+        "2 carnes de 150 g",
+        "Chorizo argentino",
+        "Milanesa de pollo",
+        "Tocineta",
+        "2 quesos cheddar",
+        "2 quesos doble crema",
+        "Tomate",
+        "Cebolla",
+        "Lechuga",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/monster.webp",
+      "sourcePhotos": [1]
+    },
+    {
+      "id": "gringa",
+      "category": "hamburguesas",
+      "name": "Gringa",
+      "price": 37900,
+      "ingredients": [
+        "Pan especial",
+        "2 carnes de 150 g",
+        "Queso cheddar",
+        "Queso doble crema",
+        "Tocineta picada",
+        "Cebolla crispy",
+        "Salsa gringa"
+      ],
+      "image": "/images/products/gringa.webp",
+      "imagePreview": "/images/products/previews/gringa.webp",
+      "sourcePhotos": [1]
+    },
+    {
+      "id": "costa",
+      "category": "hamburguesas",
+      "name": "Costa",
+      "price": 35900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Queso doble crema",
+        "Suero costeño",
+        "Chicharrón",
+        "Trozos de maduro",
+        "Queso costeño",
+        "Papa ripio",
+        "Salsa de piña",
+        "Tártara de la casa"
+      ],
+      "image": "/images/products/costa.webp",
+      "sourcePhotos": [1, 5]
+    },
+    {
+      "id": "4x4",
+      "category": "hamburguesas",
+      "name": "4×4",
+      "price": 33900,
+      "ingredients": [
+        "Pan especial",
+        "Tocineta",
+        "2 carnes de 150 g",
+        "2 quesos cheddar",
+        "Tomate",
+        "Lechuga",
+        "Cebolla",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/4x4.webp",
+      "sourcePhotos": [5]
+    },
+    {
+      "id": "philadelphia",
+      "category": "hamburguesas",
+      "name": "Philadelphia",
+      "price": 29900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Lomo de res salteado",
+        "Queso cheddar",
+        "Aro de cebolla crocante",
+        "Cebolla grille"
+      ],
+      "image": "/images/products/philadelphia.webp",
+      "imagePreview": "/images/products/previews/philadelphia-framed.webp",
+      "imagePosition": "center 40%",
+      "sourcePhotos": [4, 5]
+    },
+    {
+      "id": "pina",
+      "category": "hamburguesas",
+      "name": "Piña",
+      "price": 27900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Piña a la parrilla",
+        "2 tocinetas",
+        "Cebolla grille",
+        "Queso cheddar",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/pina.webp",
+      "imagePreview": "/images/products/previews/pina.webp",
+      "imagePosition": "center 35%",
+      "sourcePhotos": [4]
+    },
+    {
+      "id": "twist",
+      "category": "hamburguesas",
+      "name": "Twist",
+      "price": 31900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Milanesa de pollo",
+        "Queso crema",
+        "Queso cheddar",
+        "Lechuga",
+        "Tomate",
+        "Cebolla grille",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/twist.webp",
+      "sourcePhotos": [3, 4]
+    },
+    {
+      "id": "pollo",
+      "category": "hamburguesas",
+      "name": "Pollo",
+      "price": 18900,
+      "ingredients": [
+        "Pan de ajonjolí",
+        "Milanesa de pollo",
+        "Queso doble crema",
+        "Lechuga",
+        "Tomate",
+        "Cebolla grille",
+        "Salsa ranch",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/pollo.webp",
+      "sourcePhotos": [3]
+    },
+    {
+      "id": "tradicional",
+      "category": "hamburguesas",
+      "name": "Tradicional",
+      "price": 19900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Queso cheddar",
+        "Tocineta",
+        "Lechuga",
+        "Tomate",
+        "Cebolla",
+        "Salsa de la casa"
+      ],
+      "image": "/images/products/tradicional.webp",
+      "sourcePhotos": [3]
+    },
+    {
+      "id": "don-perro",
+      "category": "perros",
+      "name": "Don Perro",
+      "price": 19900,
+      "ingredients": [
+        "Pan perro",
+        "Salchicha americana",
+        "Queso doble crema",
+        "Tocineta",
+        "Cebolla grille",
+        "Papa fosforito",
+        "Salsa de la casa"
+      ],
+      "image": null,
+      "sourcePhotos": [2]
+    },
+    {
+      "id": "don-perro-premium",
+      "category": "perros",
+      "name": "Don Perro Premium",
+      "price": 25900,
+      "ingredients": [
+        "Pan perro",
+        "Salchicha alemana rellena de queso emmental",
+        "Queso doble crema",
+        "Tocineta",
+        "Queso cheddar",
+        "Cebolla grille",
+        "Papa fósforo",
+        "Salsa de la casa"
+      ],
+      "image": null,
+      "sourcePhotos": [2]
+    },
+    {
+      "id": "choripan",
+      "category": "perros",
+      "name": "Choripán",
+      "price": 21900,
+      "ingredients": [
+        "Chorizo argentino",
+        "Chimichurry",
+        "Pan",
+        "Cebolla caramelizada",
+        "Papa ripio"
+      ],
+      "image": null,
+      "sourcePhotos": [2]
+    },
+    {
+      "id": "domo-picada",
+      "category": "picadas",
+      "name": "Domo Picada",
+      "price": 54900,
+      "ingredients": [
+        "250 g de papa a la francesa con tocineta bañadas en queso cheddar",
+        "Carne de 150 g",
+        "Milanesa de pollo",
+        "Lomo salteado",
+        "Chorizo argentino",
+        "Salchicha americana",
+        "Verduras",
+        "Chimichurry",
+        "BBQ",
+        "Salsas"
+      ],
+      "image": null,
+      "sourcePhotos": [2]
+    },
+    {
+      "id": "domo-picada-costillas",
+      "category": "picadas",
+      "name": "Domo Picada con costillas",
+      "price": 59900,
+      "ingredients": [
+        "250 g de papa a la francesa con tocineta bañadas en queso cheddar",
+        "Carne de 150 g",
+        "Milanesa de pollo",
+        "Lomo salteado",
+        "Chorizo argentino",
+        "Salchicha americana",
+        "Verduras",
+        "Chimichurry",
+        "BBQ",
+        "Salsas",
+        "Costillas"
+      ],
+      "image": null,
+      "sourcePhotos": [2]
+    },
+    {
+      "id": "domo-gringas",
+      "category": "entradas",
+      "name": "Domo Gringas",
+      "price": 21000,
+      "ingredients": [
+        "300 g de papa a la francesa",
+        "Doble tocineta picada",
+        "Cebolla caramelizada",
+        "Queso cheddar",
+        "Salsa gringa"
+      ],
+      "image": null,
+      "sourcePhotos": [6]
+    },
+    {
+      "id": "domo-gringas-salchicha",
+      "category": "entradas",
+      "name": "Domo Gringas + salchicha",
+      "price": 26000,
+      "ingredients": [
+        "300 g de papa a la francesa",
+        "Doble tocineta picada",
+        "Cebolla caramelizada",
+        "Queso cheddar",
+        "Salsa gringa",
+        "Salchicha"
+      ],
+      "image": null,
+      "sourcePhotos": [6]
+    },
+    {
+      "id": "salchipapa",
+      "category": "entradas",
+      "name": "Salchipapa",
+      "price": 10900,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [6]
+    },
+    {
+      "id": "aros-cebolla",
+      "category": "entradas",
+      "name": "Aros de cebolla",
+      "price": 7500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [6]
+    },
+    {
+      "id": "infantil-pollo",
+      "category": "infantil",
+      "name": "Pollo infantil",
+      "price": 26900,
+      "ingredients": [
+        "8 nuggets de pollo",
+        "150 g de papa a la francesa",
+        "Postre",
+        "Jugo Hit"
+      ],
+      "image": null,
+      "sourcePhotos": [6]
+    },
+    {
+      "id": "infantil-hamburguesa",
+      "category": "infantil",
+      "name": "Hamburguesa infantil",
+      "price": 26900,
+      "ingredients": [
+        "Pan especial",
+        "Carne de 150 g",
+        "Queso cheddar",
+        "Salsas",
+        "150 g de papas",
+        "Postre",
+        "Jugo Hit"
+      ],
+      "image": null,
+      "sourcePhotos": [6]
+    },
+    {
+      "id": "adicional-papa-francesa",
+      "category": "adicionales",
+      "name": "Papa a la francesa",
+      "price": 7500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-papa-criolla",
+      "category": "adicionales",
+      "name": "Papa criolla",
+      "price": 7500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-papa-casco",
+      "category": "adicionales",
+      "name": "Papa casco",
+      "price": 7500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-tocineta",
+      "category": "adicionales",
+      "name": "Tocineta",
+      "price": 4500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-aros-cebolla",
+      "category": "adicionales",
+      "name": "Aros de cebolla",
+      "price": 7500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-pepinillo",
+      "category": "adicionales",
+      "name": "Pepinillo",
+      "price": 5000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-huevo-frito",
+      "category": "adicionales",
+      "name": "Huevo frito",
+      "price": 3000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-medio-chorizo",
+      "category": "adicionales",
+      "name": "½ chorizo argentino",
+      "price": 8000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-carne",
+      "category": "adicionales",
+      "name": "Carne 150 g",
+      "price": 13000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-salchicha-americana",
+      "category": "adicionales",
+      "name": "Salchicha americana",
+      "price": 8000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-salchicha-alemana",
+      "category": "adicionales",
+      "name": "Salchicha alemana",
+      "price": 14500,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-nuggets",
+      "category": "adicionales",
+      "name": "Nuggets de pollo",
+      "price": 16000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "adicional-costilla",
+      "category": "adicionales",
+      "name": "Costilla ahumada",
+      "price": 16800,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "agua",
+      "category": "bebidas",
+      "name": "Agua",
+      "price": 5000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "cerveza",
+      "category": "bebidas",
+      "name": "Cerveza",
+      "price": 6000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "coca-cola-15",
+      "category": "bebidas",
+      "name": "Coca-Cola 1,5 L",
+      "price": 12000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "coca-cola-500",
+      "category": "bebidas",
+      "name": "Coca-Cola 500 ml",
+      "price": 6000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "coca-cola-zero-400",
+      "category": "bebidas",
+      "name": "Coca-Cola Zero 400 ml",
+      "price": 6000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "coca-cola-3",
+      "category": "bebidas",
+      "name": "Coca-Cola 3 L",
+      "price": 21000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "soda",
+      "category": "bebidas",
+      "name": "Soda",
+      "price": 6000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "ginger",
+      "category": "bebidas",
+      "name": "Ginger",
+      "price": 6000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "ginger-15",
+      "category": "bebidas",
+      "name": "Ginger 1,5 L",
+      "price": 12000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "jugo",
+      "category": "bebidas",
+      "name": "Jugo",
+      "price": 4000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "stella-artois",
+      "category": "bebidas",
+      "name": "Stella Artois botella",
+      "price": 12000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "limonada-coco",
+      "category": "bebidas",
+      "name": "Limonada de coco",
+      "price": 13000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "limonada-cerezada",
+      "category": "bebidas",
+      "name": "Limonada cerezada",
+      "price": 13000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [8]
+    },
+    {
+      "id": "michelada-ginger",
+      "category": "micheladas",
+      "name": "Michelada de Ginger",
+      "price": 10900,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "michelada-soda",
+      "category": "micheladas",
+      "name": "Michelada de soda",
+      "price": 10900,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "michelada-cerveza",
+      "category": "micheladas",
+      "name": "Michelada de cerveza nacional",
+      "price": 10900,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    },
+    {
+      "id": "michelada-stella",
+      "category": "micheladas",
+      "name": "Michelada de Stella Artois botella",
+      "price": 16000,
+      "ingredients": [],
+      "image": null,
+      "sourcePhotos": [7]
+    }
+  ],
+  "combo": {
+    "price": 10500,
+    "includes": ["Papas", "Bebida a elección"],
+    "appliesTo": "all",
+    "beverages": [
+      {
+        "id": "coca-cola",
+        "label": "Coca-Cola"
+      },
+      {
+        "id": "ginger",
+        "label": "Ginger"
+      },
+      {
+        "id": "soda",
+        "label": "Soda"
+      },
+      {
+        "id": "cerveza-nacional",
+        "label": "Cerveza nacional"
+      }
+    ],
+    "sourcePhotos": [3, 4, 5],
+    "confirmedByUser": "2026-10-12"
+  },
+  "pending": [
+    {
+      "id": "producto-sin-nombre",
+      "sourcePhotos": [1],
+      "reason": "A la izquierda de Bacon Cheese hay un espacio con signo de interrogación, sin nombre, receta ni precio. No es un producto identificable."
+    }
+  ]
+}

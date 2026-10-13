@@ -44,10 +44,16 @@ Estos assets y la evidencia de `artifacts/hero-video/` permanecen como archivo d
 - Herramienta: `image_gen` integrada, modo built-in.
 - Original conservado: `public/images/burger-hero-source.png`.
 - Asset servido: `public/images/burger-hero.webp`, conversión sin cambios de composición con Sharp, calidad 88.
-- En el rediseño se conserva como imagen de la invitación final.
+- Se usó en la invitación final hasta el reemplazo solicitado el 12 de octubre de 2026.
 - Imagen conceptual de marca, identificada en la página como referencia. No es un producto confirmado de la carta.
 - Sustituir por fotografía real aprobada antes de presentar una oferta de producto.
 
-### Prompt de la primera entrega
+## Imagen de la invitación final — 12 de octubre de 2026
+
+- Fuente aportada por el usuario: `C:/Users/User/Downloads/ChatGPT Image 12 sept 2026, 09_56_41 a.m.png`, 1673 × 940 px.
+- Asset servido: `public/images/domos-compartir.webp`, convertido con Sharp a WebP calidad 90, sin recorte ni cambios de composición.
+- Uso autorizado: sección «Los buenos momentos tienen buen sabor.». Se conserva la proporción original en móvil y escritorio, y el aviso de imagen conceptual de marca.
+
+## Prompt de la primera entrega (imagen archivada)
 
 Use case: ads-marketing. Asset type: photographic hero asset for the DomoBurgers restaurant website; not a website mockup. Create a single ultra-realistic gourmet hamburger product photograph, wide landscape 1536x1024. One appetizing substantial burger: golden lightly glossy brioche bun, two beautifully seared beef patties, melted cheddar, a few pickles and natural sauce, careful believable food styling. The entire burger and its cast shadow fully within frame, occupying around 75% of image width, centered, seen at almost eye level with slight view from above. It rests on a matte charcoal black tabletop. Seamless completely black #000000 studio background across top and sides, black background smoothly blends into the black tabletop. Dramatic soft warm side lighting reveals the real food texture without overblown highlights; sophisticated editorial food photography, deeply dimensional, tactile, understated and inviting. Restrained palette of natural golden bread, cheddar and warm beef against pure black. No smoke, no flames, no airborne ingredients, no garnish around it, no fries, no utensils, no plates, no text, no logos, no hands, no watermark. This is an illustrative brand atmosphere asset, not a claimed photo of an actual menu item.

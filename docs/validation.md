@@ -1,5 +1,32 @@
 # Validación de la landing
 
+## Preparación de la subida a Nexo — 12 de octubre de 2026
+
+- Remoto verificado: `git@github.com:nexoconsultingbusiness-ctrl/domogurgers.git`, rama `main`. GitHub confirmó por SSH la cuenta `nexoconsultingbusiness-ctrl`; autor Git `nexoconsultingbusiness-ctrl <nexo.consulting.business@gmail.com>`. Antes de preparar el commit, la rama local y `origin/main` estaban sincronizadas.
+- La invitación final usa la nueva imagen suministrada, optimizada a WebP sin recortes. Revisión visual en móvil 390×844 y escritorio 1440×900: imagen completa y proporcionada, cargada correctamente, sin desbordamiento; el botón conserva su destino `/catalogo`. Evidencia local: `artifacts/final-invitation/mobile.png` y `desktop.png`.
+- La auditoría detectó alertas en [Sharp](https://github.com/advisories/GHSA-wq5f-xc86-pv6w) y [source-map-js](https://github.com/advisories/GHSA-68fv-2mgg-jv7q). Se actualizaron únicamente esas dependencias transitivas y los binarios de Sharp a versiones compatibles: Sharp 0.35.5 y source-map-js 1.2.2, sin cambiar las dependencias declaradas en `package.json`. `npm audit --omit=dev --audit-level=high` final: cero vulnerabilidades.
+- Después de los parches, `npm run check` pasó lint, tipos, las 18 pruebas y build de producción. `npm run format:check` y `git diff --check` también pasaron.
+
+## Fotografías del catálogo — 12 de octubre de 2026
+
+- Se asignaron las fotos aportadas a las 17 hamburguesas y `Portada.png` al hero del catálogo. Las 20 copias WebP completas conservan las dimensiones nativas; cinco vistas de presentación retiran espacio alrededor de las hamburguesas verticales y se muestran completas. Carnalita conserva una toma alternativa y Porteña queda pendiente de precio e ingredientes. [Asignaciones y calidad](product-photos.md).
+- Next.js sirve estas imágenes en calidad 90. La selección responsive contempla el recorte de las fotos horizontales en las tarjetas y la altura del hero móvil para solicitar suficiente resolución en pantallas de alta densidad.
+- `npm run check` pasó lint, tipos, las 18 pruebas y build; `npm run format:check` pasó. Chrome/Playwright comprobó las 17 fotos en escritorio 1440×1000 y móvil 390×844, ambos a densidad 2: asignación por nombre, portada, detalle, miniaturas del carrito y tres destacados de la página principal. Sin errores JavaScript, recursos HTTP fallidos ni desbordamiento en las vistas revisadas.
+- Evidencia local: `artifacts/product-photos/asset-manifest.json`, `browser-results.json` y capturas de hero, tarjetas, detalles y carrito. Las fuentes PNG permanecen sin modificar. El sitio sigue disponible localmente en http://127.0.0.1:3001/catalogo.
+- Revisión visual independiente final: **ship**, sin bloqueadores. Philadelphia conserva margen sobre el pan tras renovar la ruta de su vista de presentación.
+- Corrección posterior solicitada por el usuario: las tarjetas de Churry, Carnalita, Gringa, Philadelphia y Piña llenan el marco 4:3 con `cover`, como Bacon Cheese. Se ajustó la posición de tres encuadres; detalle y miniaturas conservan su presentación completa. Chrome/Playwright confirmó las 17 tarjetas con `cover` y comparó seis fotos en escritorio y móvil, sin barras, deformación, desbordamiento ni errores de carga. Calidad 90 conservada; lint, tipos, build y formato correctos. Revisión independiente: **ship**. Evidencia: `artifacts/product-photo-fill/`.
+
+## Menú real, catálogo y combos — 12 de octubre de 2026
+
+- Se transcribieron 58 opciones de ocho fotos suministradas: 17 hamburguesas, 3 perros/choripán, 2 picadas, 4 entradas, 2 infantiles, 13 adicionales, 13 bebidas y 4 micheladas. La fuente única es `menu-data.json`; los espacios para fotos quedan reservados por instrucción del usuario. [Registro completo](menu-digitization.md).
+- El usuario confirmó el combo de $10.500 como opción para cualquier producto. Se verificaron líneas separadas por bebida, fusión de opciones iguales, cantidades, edición, eliminación, recargo por unidad y persistencia al recargar.
+- `npm run check` pasó: lint, TypeScript, 18 pruebas y build. `npm run format:check` pasó. Las pruebas cubren la carta y los combos, incluidos datos de carrito manipulados.
+- Chrome/Playwright comprobó 1440×1000, 390×844 y 320×760: categorías, búsqueda por nombre/ingredientes sin tildes, precios, detalle, combinación de productos solos y combos, carrito, Escape, devolución de foco y enlaces desde la portada. Cero errores JavaScript y cero desbordamientos en las vistas revisadas.
+- Axe detectó cero infracciones WCAG A/AA en el menú, detalle y carrito de escritorio, y en el carrito móvil y compacto. El envío de WhatsApp se interceptó localmente para revisar nombre, bebida, cantidades y total; no se envió un pedido.
+- Evidencia local: `artifacts/menu-digitization/results.json`, capturas de menú, bebidas, combo, carrito y portada. El detector de diseño se ejecutó una sola vez; emitió avisos sobre Arial heredada y tamaños/tonos locales, sin cambiar la identidad que fija la referencia existente.
+- Revisión independiente final: **disposition: ship**, sin correcciones materiales de interfaz. Se actualizaron las referencias factuales a la carta provisional en DESIGN.md, conservando el sistema visual existente.
+- Servidor de desarrollo para revisión: http://127.0.0.1:3001; `/catalogo` responde HTTP 200. No se subieron cambios al repositorio ni se realizó un despliegue remoto.
+
 ## Preparación para GitHub y Vercel — 5 de octubre de 2026
 
 - Acceso SSH confirmado como `nexoconsultingbusiness-ctrl` al repositorio `nexoconsultingbusiness-ctrl/domogurgers`.

@@ -5,12 +5,12 @@ import { catalogSettings } from "@/config/catalog";
 export const metadata: Metadata = {
   title: "Catálogo digital",
   description:
-    "Elige tus hamburguesas DomoBurgers, arma tu carrito y prepara tu pedido por WhatsApp para Maní o Yopal.",
+    "Explora hamburguesas, perros, picadas, entradas, menú infantil y bebidas DomoBurgers. Agrega un combo y prepara tu pedido por WhatsApp para Maní o Yopal.",
   alternates: { canonical: "/catalogo" },
   openGraph: {
     title: "Catálogo digital | DomoBurgers",
     description:
-      "Tus burgers favoritas en un solo pedido. Explora el menú y arma tu carrito.",
+      "Todo el menú DomoBurgers con ingredientes y precios. Elige tus productos, agrega un combo y arma tu pedido.",
     url: "/catalogo",
   },
 };

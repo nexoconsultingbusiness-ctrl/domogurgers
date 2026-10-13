@@ -14,8 +14,8 @@
 .introPhoto {
   z-index: -2;
   object-fit: cover;
-  object-position: 65% 55%;
-  opacity: 0.52;
+  object-position: center 70%;
+  opacity: 0.95;
 }
 
 .intro::after {
@@ -23,7 +23,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(90deg, #11100ef5, #11100e85 55%, #11100e15);
+  background: linear-gradient(90deg, #11100ef5, #11100e85 45%, #11100e12 75%);
 }
 
 .introContent h1 {
@@ -129,16 +129,31 @@
   margin-top: 12px;
 }
 
+.comboNote {
+  margin-top: 16px;
+  max-width: 65ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.comboNote strong {
+  color: var(--gold);
+  white-space: nowrap;
+}
+
 .toolbar {
   margin-top: 28px;
   padding-block: 20px;
   border-block: 1px solid var(--line);
+  align-items: flex-start;
 }
 
 .categories {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 .categories button {
@@ -170,6 +185,33 @@
   width: min(340px, 100%);
   min-height: 48px;
   color: var(--muted);
+  flex-shrink: 0;
+}
+
+.menuSection + .menuSection {
+  margin-top: 56px;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionHeading h3 {
+  font-size: clamp(24px, 2.5vw, 30px);
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.sectionHeading > span {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .search > svg {
@@ -298,13 +340,13 @@
   flex-wrap: wrap;
 }
 
-.productHeading h3 {
+.productHeading h4 {
   font-size: 23px;
   line-height: 1.2;
   font-weight: 900;
 }
 
-.productHeading h3 button {
+.productHeading h4 button {
   color: inherit;
   background: none;
   border: 0;
@@ -326,6 +368,60 @@
   font-size: 14px;
   line-height: 1.65;
   margin: 12px 0 24px;
+}
+
+.compactGrid .productCard {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-content: start;
+  gap: 20px 16px;
+  padding: 20px;
+}
+
+.compactGrid .productPhoto {
+  width: 72px;
+  aspect-ratio: 1;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.compactGrid .productLabel {
+  display: none;
+}
+
+.compactGrid .inCart {
+  left: 0;
+  bottom: 0;
+  padding: 4px 8px;
+}
+
+.compactGrid .productCopy {
+  display: contents;
+}
+
+.compactGrid .productHeading {
+  grid-column: 2;
+  align-content: center;
+  gap: 4px 12px;
+}
+
+.compactGrid .productHeading h4 {
+  width: 100%;
+  font-size: 18px;
+}
+
+.compactGrid .productHeading h4 button {
+  min-height: 0;
+}
+
+.compactGrid .productHeading > span {
+  font-size: 16px;
+}
+
+.compactGrid .productActions {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  padding-top: 16px;
 }
 
 .productActions {
@@ -505,6 +601,90 @@
   color: var(--muted);
 }
 
+.ingredients {
+  margin-top: 24px;
+}
+
+.ingredients h4 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ingredients ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.comboOption {
+  margin-top: 24px;
+  padding-block: 20px;
+  border-block: 1px solid var(--line);
+}
+
+.comboToggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.comboToggle input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  accent-color: var(--gold);
+}
+
+.comboToggle strong,
+.comboToggle small {
+  display: block;
+  line-height: 1.5;
+}
+
+.comboToggle strong {
+  font-size: 15px;
+}
+
+.comboToggle small {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.comboBeverage {
+  display: block;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.comboBeverage select {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 16px;
+}
+
+.comboToggle input:focus-visible,
+.comboBeverage select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
 .detailQuantity {
   margin-block: 24px;
 }
@@ -565,10 +745,15 @@
   border-bottom: 1px solid var(--line);
 }
 
-.cartItem > img {
+.cartPhoto {
+  position: relative;
   width: 72px;
   height: 72px;
-  object-fit: cover;
+  flex: 0 0 72px;
+}
+
+.cartItemInfo .cartCombo {
+  color: var(--gold);
 }
 
 .cartItemInfo {
@@ -749,8 +934,11 @@
     padding-block: 132px 32px;
   }
   .introPhoto {
-    object-position: 64% center;
-    opacity: 0.36;
+    object-position: 50% 65%;
+    opacity: 0.8;
+  }
+  .intro::after {
+    background: linear-gradient(90deg, #11100ee8, #11100e80);
   }
   .introContent p {
     max-width: 280px;
@@ -789,7 +977,7 @@
   .productCopy {
     padding: 20px;
   }
-  .productHeading h3 {
+  .productHeading h4 {
     font-size: 23px;
   }
   .floatingCart {
@@ -817,9 +1005,13 @@
   .cartItem {
     gap: 12px;
   }
-  .cartItem > img {
+  .cartPhoto {
     width: 52px;
     height: 60px;
+    flex-basis: 52px;
+  }
+  .ingredients ul {
+    grid-template-columns: minmax(0, 1fr);
   }
   .cartItemEnd strong {
     font-size: 14px;

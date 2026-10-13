@@ -53,30 +53,30 @@ test("cart storage survives denial and quota failures, then resumes cross-tab sy
     let notifications = 0;
     unsubscribe = cartStore.subscribe(() => notifications++);
     stored = "{invalid-json";
-    cartStore.updateCart((cart) => addToCart(cart, "domo-doble"));
+    cartStore.updateCart((cart) => addToCart(cart, "bacon-cheese"));
     assert.deepEqual(JSON.parse(cartStore.getSnapshot()), [
-      { productId: "domo-doble", quantity: 1 },
+      { productId: "bacon-cheese", quantity: 1 },
     ]);
     assert.equal(notifications, 1);
 
     full = true;
-    cartStore.updateCart((cart) => addToCart(cart, "domo-doble"));
-    cartStore.updateCart((cart) => addToCart(cart, "domo-doble"));
+    cartStore.updateCart((cart) => addToCart(cart, "bacon-cheese"));
+    cartStore.updateCart((cart) => addToCart(cart, "bacon-cheese"));
     assert.equal(JSON.parse(cartStore.getSnapshot())[0].quantity, 3);
     assert.equal(JSON.parse(stored!)[0].quantity, 1);
 
     // A successful later write must unlock reads and cross-tab updates again.
     full = false;
-    cartStore.updateCart((cart) => addToCart(cart, "domo-doble"));
+    cartStore.updateCart((cart) => addToCart(cart, "bacon-cheese"));
     assert.equal(JSON.parse(stored!)[0].quantity, 4);
-    stored = JSON.stringify([{ productId: "bacon-royal", quantity: 2 }]);
+    stored = JSON.stringify([{ productId: "tradicional", quantity: 2 }]);
     notifyStorage(localStorage);
     assert.deepEqual(JSON.parse(cartStore.getSnapshot()), [
-      { productId: "bacon-royal", quantity: 2 },
+      { productId: "tradicional", quantity: 2 },
     ]);
 
     denied = true;
-    cartStore.updateCart((cart) => addToCart(cart, "bacon-royal"));
+    cartStore.updateCart((cart) => addToCart(cart, "tradicional"));
     assert.equal(JSON.parse(cartStore.getSnapshot())[0].quantity, 3);
     denied = false;
     // Cross-tab clearing recovers from a prior access denial as well.

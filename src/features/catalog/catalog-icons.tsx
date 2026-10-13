@@ -1,7 +1,21 @@
 type IconName =
-  "bag" | "plus" | "minus" | "close" | "search" | "trash" | "whatsapp";
+  | "bag"
+  | "plus"
+  | "minus"
+  | "close"
+  | "search"
+  | "trash"
+  | "whatsapp"
+  | "image";
 
 const paths: Record<IconName, React.ReactNode> = {
+  image: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8" cy="8" r="1.5" />
+      <path d="m21 15-5-5L5 21" />
+    </>
+  ),
   bag: (
     <>
       <path d="M5 7h14l1 14H4L5 7Z" />

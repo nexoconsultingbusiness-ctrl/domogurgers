@@ -21,10 +21,11 @@ export function FinalInvitation() {
         </div>
         <figure className="invitation-image" data-reveal>
           <Image
-            src="/images/burger-hero.webp"
-            width={1536}
-            height={1024}
-            alt="Imagen conceptual de una hamburguesa artesanal con pan dorado y queso fundido"
+            src="/images/domos-compartir.webp"
+            width={1673}
+            height={940}
+            alt="Composición de hamburguesas, papas, salchipapas y bebidas de DomoBurgers para compartir"
+            quality={90}
             sizes="(max-width: 767px) 100vw, 50vw"
           />
           <figcaption>Imagen conceptual de marca.</figcaption>

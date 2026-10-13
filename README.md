@@ -2,7 +2,7 @@
 
 Base web full stack con Next.js, preparada para el flujo **GitHub → Vercel Preview → Vercel Production**. Incluye una portada responsive basada en la identidad real de DomoBurgers, API de infraestructura y una estructura modular para crecer.
 
-La portada incluye una carta provisional de tres hamburguesas. No implementa pedidos, pagos, usuarios ni base de datos; los nombres, ingredientes y precios visibles son ejemplos identificados como tales.
+La portada destaca tres hamburguesas y enlaza a `/catalogo`, con 58 opciones del menú suministrado, filtros por categoría, búsqueda, ingredientes y carrito persistente. Permite agregar un combo de papas y bebida por $10.500 a cualquier producto y preparar el pedido por WhatsApp. Las 17 hamburguesas tienen fotos aportadas por el usuario; las otras 41 opciones conservan espacios reservados donde corresponde. No incluye pagos en línea, usuarios ni registro de pedidos en servidor.
 
 ## Requisitos y arranque
 
@@ -62,7 +62,8 @@ src/
   assets/fonts/             Montserrat local y licencia OFL
   components/layout/        Cabecera, pie, navegación móvil
   components/ui/            Iconos compartidos
-  features/brand/           Hero, carta provisional y presentación de marca
+  features/brand/           Hero, selección de hamburguesas y presentación de marca
+  features/catalog/         Menú digitalizado, búsqueda, combos y carrito
   config/                   Entorno validado y configuración del sitio
   lib/                      Helpers de respuesta API
   server/services/          Servicios exclusivos de servidor
@@ -134,7 +135,7 @@ Paleta original: negro `#000000`, blanco `#FFFFFF`, oro `#EFC008`, vino `#722F37
 
 La portada reproduce el hero y la carta de la referencia Lovable elegida por el usuario: fotografía a pantalla completa, titular blanco y oro, controles rectangulares y tres tarjetas. El hero actual es estático; GSAP añade movimiento opcional en las secciones inferiores, sin ScrollTrigger. La cabecera, el hero y la carta usan Arial para coincidir con el aspecto renderizado de la referencia; las otras secciones conservan Montserrat.
 
-La fotografía actual del hero fue suministrada por el usuario. La carta indica que sus nombres, ingredientes y precios en COP son provisionales y que las imágenes son conceptuales. Los botones de pedido llevan a esa carta; no crean pedidos.
+La fotografía actual del hero fue suministrada por el usuario. Los nombres, ingredientes y precios en COP se transcribieron de las ocho fotos de la carta recibidas el 12 de octubre de 2026. Las 17 hamburguesas usan sus fotos suministradas; los espacios restantes muestran «Foto próximamente» donde corresponde. La invitación final usa la composición de hamburguesas, acompañamientos y bebidas elegida por el usuario. Los botones abren el catálogo y permiten preparar un pedido por WhatsApp; el cliente revisa y envía el mensaje para que la sede lo confirme. Ver [menú digitalizado](docs/menu-digitization.md), [fotografías](docs/product-photos.md) y [catálogo y combos](docs/catalog.md).
 
 El módulo de historia «De Maní. Para compartir.» ya no está montado en la portada. La información de origen procede del manual de marca y permanece documentada; el pie conserva las ciudades Maní y Yopal. No se han añadido contactos, direcciones ni horarios de ejemplo.
 
@@ -146,6 +147,6 @@ Ver resultados concretos en [docs/validation.md](docs/validation.md). La automat
 
 La configuración oficial de Next.js usada aquí todavía incluye un plugin React incompatible con ESLint 10. Se fija ESLint 9.39.5, compatible y comprobado; npm muestra un aviso de fin de soporte de esa línea. Actualizarlo junto con los plugins cuando sean compatibles, sin forzar una versión que rompa lint.
 
-No hay persistencia, autenticación, rate limiting distribuido ni integración de pedidos/pagos activos. No son necesarios para esta portada y API de infraestructura; son requisitos a implementar antes de abrir operaciones de negocio. La base no contiene secretos.
+El carrito se conserva en el navegador; los datos personales del comprador se usan para preparar el mensaje y no se registran en el servidor. La confirmación del pedido y el pago se gestionan con la sede por WhatsApp. No hay autenticación, base de datos de pedidos ni cobros en línea. La base no contiene secretos.
 
-**Siguiente paso:** aprobar el contenido visual y aportar carta, precios, fotos, direcciones, horarios y canales oficiales para definir el catálogo y el flujo de pedidos.
+**Pendiente de contenido:** fotos de las otras 41 opciones, precio e ingredientes de Porteña, direcciones y horarios oficiales.
