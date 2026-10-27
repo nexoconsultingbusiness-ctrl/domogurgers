@@ -33,6 +33,12 @@
       "compact": false
     },
     {
+      "id": "micheladas",
+      "label": "Micheladas",
+      "showImages": true,
+      "compact": false
+    },
+    {
       "id": "adicionales",
       "label": "Adicionales",
       "showImages": false,
@@ -43,12 +49,6 @@
       "label": "Bebidas",
       "showImages": false,
       "compact": true
-    },
-    {
-      "id": "micheladas",
-      "label": "Micheladas",
-      "showImages": true,
-      "compact": false
     }
   ],
   "products": [

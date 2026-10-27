@@ -181,7 +181,7 @@ test("the photographed menu replaces demo products and preserves complete catego
         catalogProducts.filter((product) => product.category === section.id)
           .length,
     ),
-    [17, 3, 2, 4, 2, 13, 13, 4],
+    [17, 3, 2, 4, 2, 4, 13, 13],
   );
   for (const product of catalogProducts) {
     assert.ok(
