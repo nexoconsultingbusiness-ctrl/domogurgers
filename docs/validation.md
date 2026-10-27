@@ -1,5 +1,26 @@
 # Validación de la landing
 
+## Fotos de comidas y micheladas — 27 de octubre de 2026
+
+- Se asignaron diez fotos a productos existentes: ocho incorporaciones y dos reemplazos, para un total de 32 productos con foto entre las 58 opciones. Las 26 opciones de adicionales y bebidas conservan la presentación sin imágenes ni espacios reservados; no quedan placeholders visibles. Hamburguesa Lechuga permanece como archivo preparado pendiente de identificación y datos comerciales.
+- `npm run check` pasó lint, tipos, las 18 pruebas y build. La auditoría confirmó que nombres, precios, ingredientes y demás datos comerciales permanecen intactos y que todas las rutas de imagen asignadas existen.
+- La revisión en navegador a 1440 × 1000 y 390 × 844 comprobó la carga de las fotografías nuevas y `cover` en sus marcos: comidas 4:3 y micheladas 3:4. Se verificaron el detalle y la foto del carrito de una michelada; detalle y miniaturas conservan `contain`. Sin desbordamiento horizontal en móvil. Capturas y evidencia local: `artifacts/catalog-photos-oct27/`.
+- Los once originales permanecen intactos. Las copias WebP calidad 95 conservan las dimensiones, sin recortes ni redimensionado: 27,15 MB de PNG se convierten en 4,73 MB de WebP. El manifest registra hashes SHA-256, dimensiones, tamaños y asignaciones; también se verificaron sin cambios los 36 archivos de imagen anteriores.
+- El detector emitió avisos sobre tipografías, tamaños y colores anteriores a esta entrega, fuera del alcance de la incorporación de fotografías. Esos estilos se conservaron. Estas verificaciones son locales y no acreditan un despliegue remoto.
+
+## Categorías sin imágenes — 16 de octubre de 2026
+
+- Adicionales, bebidas y micheladas declaran `showImages: false`. Sus 30 productos no montan imagen, placeholder ni contenedor vacío en tarjetas, detalle o carrito. Las tarjetas aprovechan todo el ancho y conservan el indicador de cantidad como texto.
+- Chrome/Playwright verificó 1440×1000, 390×844 y 320×760: las tres categorías sin áreas de imagen, precios, cantidades, combo con soda, subtotal y carrito mixto con una hamburguesa que conserva su foto. El menú mantiene 58 productos, 24 fotografías y cuatro espacios de foto pendientes en las otras categorías. Sin desbordamientos, errores JavaScript ni HTTP fallidos.
+- Axe no detectó infracciones WCAG A/AA en las tres secciones, detalle y carrito mixto de escritorio. El detector de layout no emitió hallazgos en los archivos del catálogo revisados. `npm run check` pasó lint, tipos, las 18 pruebas y build. Evidencia local: `artifacts/catalog-no-photos/results.json` y capturas por categoría, detalle y carrito.
+
+## Fotos de perros, picada y entradas — 16 de octubre de 2026
+
+- Se recibieron nueve PNG y se prepararon copias WebP a calidad 95, conservando sus dimensiones nativas. Se asignaron siete fotos: Don Perro, Don Perro Premium, Choripán, Domo Picada, Domo Gringas + salchicha, Pollo infantil y Domo Gringas. Las dos tomas adicionales de perros quedan como alternativas. El usuario confirmó la foto de Nuggets para Pollo infantil y la de Carne para Domo Gringas, conservando sus datos comerciales.
+- Las tarjetas mantienen `cover` en el marco 4:3 y calidad 90 de Next.js. Choripán tiene foco hacia la izquierda y Domo Gringas + salchicha utiliza una vista de presentación que concentra el encuadre en la comida.
+- Chrome/Playwright comprobó escritorio 1440×1000 y móvil 390×844, ambos a densidad 2: 58 productos y 24 fotos asignadas, encuadre completo del recuadro sin barras, detalle de cada producto y foto del carrito. Sin errores JavaScript, HTTP fallidos ni desbordamiento. También se verificaron las dimensiones nativas de las nueve copias completas.
+- `npm run check` pasó lint, tipos, las 18 pruebas y build de producción. Evidencia local: `artifacts/catalog-photos-oct16/asset-manifest.json`, `browser-results.json` y capturas de las tarjetas en escritorio y móvil. Los originales permanecen sin modificar.
+
 ## Preparación de la subida a Nexo — 12 de octubre de 2026
 
 - Remoto verificado: `git@github.com:nexoconsultingbusiness-ctrl/domogurgers.git`, rama `main`. GitHub confirmó por SSH la cuenta `nexoconsultingbusiness-ctrl`; autor Git `nexoconsultingbusiness-ctrl <nexo.consulting.business@gmail.com>`. Antes de preparar el commit, la rama local y `origin/main` estaban sincronizadas.

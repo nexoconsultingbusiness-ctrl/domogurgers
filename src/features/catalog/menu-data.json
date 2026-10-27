@@ -5,42 +5,50 @@
     {
       "id": "hamburguesas",
       "label": "Hamburguesas",
+      "showImages": true,
       "compact": false
     },
     {
       "id": "perros",
       "label": "Perros y choripán",
+      "showImages": true,
       "compact": false
     },
     {
       "id": "picadas",
       "label": "Picadas",
+      "showImages": true,
       "compact": false
     },
     {
       "id": "entradas",
       "label": "Entradas",
+      "showImages": true,
       "compact": false
     },
     {
       "id": "infantil",
       "label": "Menú infantil",
+      "showImages": true,
       "compact": false
     },
     {
       "id": "adicionales",
       "label": "Adicionales",
+      "showImages": false,
       "compact": true
     },
     {
       "id": "bebidas",
       "label": "Bebidas",
+      "showImages": false,
       "compact": true
     },
     {
       "id": "micheladas",
       "label": "Micheladas",
-      "compact": true
+      "showImages": true,
+      "compact": false
     }
   ],
   "products": [
@@ -372,7 +380,7 @@
         "Papa fosforito",
         "Salsa de la casa"
       ],
-      "image": null,
+      "image": "/images/products/don-perro.webp",
       "sourcePhotos": [2]
     },
     {
@@ -390,7 +398,7 @@
         "Papa fósforo",
         "Salsa de la casa"
       ],
-      "image": null,
+      "image": "/images/products/don-perro-premium.webp",
       "sourcePhotos": [2]
     },
     {
@@ -405,7 +413,8 @@
         "Cebolla caramelizada",
         "Papa ripio"
       ],
-      "image": null,
+      "image": "/images/products/choripan.webp",
+      "imagePosition": "20% center",
       "sourcePhotos": [2]
     },
     {
@@ -425,7 +434,7 @@
         "BBQ",
         "Salsas"
       ],
-      "image": null,
+      "image": "/images/products/domo-picada-20261027.webp",
       "sourcePhotos": [2]
     },
     {
@@ -446,7 +455,7 @@
         "Salsas",
         "Costillas"
       ],
-      "image": null,
+      "image": "/images/products/domo-picada-costillas.webp",
       "sourcePhotos": [2]
     },
     {
@@ -461,8 +470,10 @@
         "Queso cheddar",
         "Salsa gringa"
       ],
-      "image": null,
-      "sourcePhotos": [6]
+      "image": "/images/products/domo-gringas.webp",
+      "sourcePhotos": [6],
+      "imagePreview": "/images/products/previews/domo-gringas.webp",
+      "imagePosition": "center 40%"
     },
     {
       "id": "domo-gringas-salchicha",
@@ -477,7 +488,9 @@
         "Salsa gringa",
         "Salchicha"
       ],
-      "image": null,
+      "image": "/images/products/domo-gringas-salchicha.webp",
+      "imagePreview": "/images/products/previews/domo-gringas-salchicha.webp",
+      "imagePosition": "center 45%",
       "sourcePhotos": [6]
     },
     {
@@ -486,7 +499,7 @@
       "name": "Salchipapa",
       "price": 10900,
       "ingredients": [],
-      "image": null,
+      "image": "/images/products/salchipapa.webp",
       "sourcePhotos": [6]
     },
     {
@@ -495,7 +508,8 @@
       "name": "Aros de cebolla",
       "price": 7500,
       "ingredients": [],
-      "image": null,
+      "image": "/images/products/aros-cebolla.webp",
+      "imagePosition": "center 62%",
       "sourcePhotos": [6]
     },
     {
@@ -509,7 +523,7 @@
         "Postre",
         "Jugo Hit"
       ],
-      "image": null,
+      "image": "/images/products/infantil-pollo-menu.webp",
       "sourcePhotos": [6]
     },
     {
@@ -526,7 +540,7 @@
         "Postre",
         "Jugo Hit"
       ],
-      "image": null,
+      "image": "/images/products/infantil-hamburguesa.webp",
       "sourcePhotos": [6]
     },
     {
@@ -769,7 +783,8 @@
       "name": "Michelada de Ginger",
       "price": 10900,
       "ingredients": [],
-      "image": null,
+      "image": "/images/products/michelada-ginger.webp",
+      "imagePosition": "center 55%",
       "sourcePhotos": [7]
     },
     {
@@ -778,7 +793,8 @@
       "name": "Michelada de soda",
       "price": 10900,
       "ingredients": [],
-      "image": null,
+      "image": "/images/products/michelada-soda.webp",
+      "imagePosition": "center 55%",
       "sourcePhotos": [7]
     },
     {
@@ -787,7 +803,8 @@
       "name": "Michelada de cerveza nacional",
       "price": 10900,
       "ingredients": [],
-      "image": null,
+      "image": "/images/products/michelada-cerveza.webp",
+      "imagePosition": "center 55%",
       "sourcePhotos": [7]
     },
     {
@@ -796,7 +813,8 @@
       "name": "Michelada de Stella Artois botella",
       "price": 16000,
       "ingredients": [],
-      "image": null,
+      "image": "/images/products/michelada-stella.webp",
+      "imagePosition": "center 55%",
       "sourcePhotos": [7]
     }
   ],

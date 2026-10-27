@@ -302,6 +302,10 @@
   transition: transform 350ms var(--ease);
 }
 
+.portraitPhoto {
+  aspect-ratio: 3 / 4;
+}
+
 @media (hover: hover) {
   .productPhoto:hover img {
     transform: scale(1.04);
@@ -371,47 +375,21 @@
 }
 
 .compactGrid .productCard {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  align-content: start;
-  gap: 20px 16px;
   padding: 20px;
 }
 
-.compactGrid .productPhoto {
-  width: 72px;
-  aspect-ratio: 1;
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.compactGrid .productLabel {
-  display: none;
-}
-
-.compactGrid .inCart {
-  left: 0;
-  bottom: 0;
-  padding: 4px 8px;
-}
-
 .compactGrid .productCopy {
-  display: contents;
+  padding: 0;
 }
 
 .compactGrid .productHeading {
-  grid-column: 2;
-  align-content: center;
   gap: 4px 12px;
 }
 
 .compactGrid .productHeading h4 {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   font-size: 18px;
-}
-
-.compactGrid .productHeading h4 button {
-  min-height: 0;
 }
 
 .compactGrid .productHeading > span {
@@ -419,9 +397,15 @@
 }
 
 .compactGrid .productActions {
-  grid-column: 1 / -1;
-  margin-top: 0;
+  margin-top: 16px;
   padding-top: 16px;
+}
+
+.inCartText {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 8px;
 }
 
 .productActions {

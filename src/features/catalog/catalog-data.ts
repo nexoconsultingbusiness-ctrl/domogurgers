@@ -22,6 +22,12 @@ export type CatalogProduct = {
 export const catalogIsProvisional = false;
 export const catalogSections = menuData.categories;
 
+export function categoryHasImages(category: CatalogCategory): boolean {
+  return catalogSections.some(
+    (section) => section.id === category && section.showImages,
+  );
+}
+
 export const catalogCategories = [
   { id: "all", label: "Todo el menú" },
   ...catalogSections,

@@ -14,6 +14,7 @@ import {
   catalogCombo,
   catalogIsProvisional,
   catalogProducts,
+  categoryHasImages,
   formatPrice,
   isComboBeverage,
   type CatalogProduct,
@@ -371,32 +372,29 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
                 return (
                   <li key={item.id}>
                     <article className={styles.productCard}>
-                      <button
-                        type="button"
-                        className={styles.productPhoto}
-                        aria-label={`Ver detalle de ${item.name}`}
-                        onClick={() => openProduct(item)}
-                      >
-                        {/* Landscape sources need extra pixels to cover a 4:3 frame. */}
-                        <ProductImage
-                          product={item}
-                          thumbnail={section.compact}
-                          sizes={
-                            section.compact
-                              ? "72px"
-                              : "(max-width: 639px) calc(133.34vw - 53.34px), (max-width: 959px) calc((133.34vw - 117.34px) / 2), (max-width: 1439px) calc((133.34vw - 192px) / 3), 576px"
-                          }
-                        />
-                        <span className={styles.productLabel}>
-                          {item.label}
-                        </span>
-                        {quantity > 0 && (
-                          <span className={styles.inCart}>
-                            {quantity}
-                            {section.compact ? "" : " en tu carrito"}
+                      {section.showImages && (
+                        <button
+                          type="button"
+                          className={`${styles.productPhoto} ${item.category === "micheladas" ? styles.portraitPhoto : ""}`}
+                          aria-label={`Ver detalle de ${item.name}`}
+                          onClick={() => openProduct(item)}
+                        >
+                          {/* Landscape sources need extra pixels to cover a 4:3 frame. */}
+                          <ProductImage
+                            product={item}
+                            sizes="(max-width: 639px) calc(133.34vw - 53.34px), (max-width: 959px) calc((133.34vw - 117.34px) / 2), (max-width: 1439px) calc((133.34vw - 192px) / 3), 576px"
+                          />
+                          <span className={styles.productLabel}>
+                            {item.label}
                           </span>
-                        )}
-                      </button>
+                          {quantity > 0 && (
+                            <span className={styles.inCart}>
+                              {quantity}
+                              {" en tu carrito"}
+                            </span>
+                          )}
+                        </button>
+                      )}
                       <div className={styles.productCopy}>
                         <div className={styles.productHeading}>
                           <h4>
@@ -410,6 +408,11 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
                           <span>{formatPrice(item.price)}</span>
                         </div>
                         {item.description && <p>{item.description}</p>}
+                        {!section.showImages && quantity > 0 && (
+                          <span className={styles.inCartText}>
+                            {quantity} en tu carrito
+                          </span>
+                        )}
                         <div className={styles.productActions}>
                           <button
                             type="button"
@@ -484,14 +487,16 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
 
       {product && (
         <Modal title="Detalle del producto" onClose={() => setProduct(null)}>
-          <div className={styles.detailPhoto}>
-            <ProductImage
-              product={product}
-              eager
-              contain
-              sizes="(max-width: 639px) 100vw, 560px"
-            />
-          </div>
+          {categoryHasImages(product.category) && (
+            <div className={styles.detailPhoto}>
+              <ProductImage
+                product={product}
+                eager
+                contain
+                sizes="(max-width: 639px) 100vw, 560px"
+              />
+            </div>
+          )}
           <div className={styles.detailBody}>
             <div className={styles.detailHeading}>
               <h3>{product.name}</h3>
@@ -616,9 +621,11 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
                       })}
                       className={styles.cartItem}
                     >
-                      <div className={styles.cartPhoto}>
-                        <ProductImage product={item} sizes="72px" thumbnail />
-                      </div>
+                      {categoryHasImages(item.category) && (
+                        <div className={styles.cartPhoto}>
+                          <ProductImage product={item} sizes="72px" thumbnail />
+                        </div>
+                      )}
                       <div className={styles.cartItemInfo}>
                         <h3>{item.name}</h3>
                         {comboLabel && (
