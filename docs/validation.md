@@ -1,5 +1,11 @@
 # Validación de la landing
 
+## WhatsApp por sede — 27 de octubre de 2026
+
+- Contactos confirmados: Yopal `573112567920` y Maní `573213390551`. Cada sede tiene su número predeterminado; la variable común anterior `WHATSAPP_NUMBER` ya no interviene. Las variables específicas siguen permitiendo reemplazar únicamente su sede.
+- `npm run check` pasó lint, tipos, 22 pruebas y build de producción. Las cuatro pruebas nuevas cubren el cambio Yopal → Maní → Yopal con destinatario y texto coincidentes, el descarte del número común anterior, los reemplazos y valores vacíos por sede, y el bloqueo aislado de valores inválidos.
+- La respuesta local de `/catalogo` devolvió HTTP 200 y entregó al cliente ambos contactos correctos. No se enviaron mensajes ni pedidos reales. Esta verificación no acredita el despliegue remoto ni sus variables específicas.
+
 ## Fotos de comidas y micheladas — 27 de octubre de 2026
 
 - Se asignaron diez fotos a productos existentes: ocho incorporaciones y dos reemplazos, para un total de 32 productos con foto entre las 58 opciones. Las 26 opciones de adicionales y bebidas conservan la presentación sin imágenes ni espacios reservados; no quedan placeholders visibles. Hamburguesa Lechuga permanece como archivo preparado pendiente de identificación y datos comerciales.

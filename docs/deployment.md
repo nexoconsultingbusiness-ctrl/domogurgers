@@ -38,7 +38,7 @@ No necesita `vercel.json`, exportación estática, base de datos ni credenciales
 
 `SITE_URL` es opcional al comenzar con el dominio de Vercel. Para un dominio propio, configurarlo únicamente en Production con su origen HTTPS, por ejemplo `https://dominio.com`, y volver a desplegar. Las variables `VERCEL_ENV`, `VERCEL_URL` y `VERCEL_PROJECT_PRODUCTION_URL` las aporta Vercel. Preview permanece sin indexación; los metadatos de Production utilizan el dominio de producción.
 
-`/catalogo` utiliza por defecto el WhatsApp comercial +57 3213390551 confirmado por el usuario el 8 de octubre de 2026. Opcionalmente, `WHATSAPP_NUMBER` sustituye ese contacto común y `WHATSAPP_MANI_NUMBER` y `WHATSAPP_YOPAL_NUMBER` permiten definir uno por sede, en formato internacional con sólo dígitos. Las variables vacías usan el contacto de respaldo; las no vacías e inválidas deshabilitan el envío afectado. Volver a desplegar después de cambiar estas variables. Consultar [catalog.md](catalog.md) para la precedencia, la carta real y los combos.
+`/catalogo` utiliza los contactos por sede confirmados el 27 de octubre de 2026: Yopal `573112567920` y Maní `573213390551`. Opcionalmente, `WHATSAPP_YOPAL_NUMBER` y `WHATSAPP_MANI_NUMBER` reemplazan únicamente el número de su sede, en formato internacional con sólo dígitos. Las variables vacías usan el predeterminado propio; las no vacías e inválidas deshabilitan sólo el envío afectado. `WHATSAPP_NUMBER` está retirada y se ignora; eliminar esa variable anterior y comprobar que los reemplazos por sede, si existen en Vercel, coincidan con los contactos vigentes. Volver a desplegar después de cambiar estas variables. Consultar [catalog.md](catalog.md) para la configuración, la carta real y los combos.
 
 ## Verificación tras el despliegue
 

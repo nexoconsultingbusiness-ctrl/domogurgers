@@ -26,17 +26,18 @@ El carrito distingue producto solo y producto con cada bebida. Dos unidades con 
 
 ## Activar WhatsApp
 
-El WhatsApp comercial +57 3213390551 fue confirmado por el usuario el 8 de octubre de 2026 y funciona como contacto común predeterminado para ambas sedes. Para sustituirlo, configurar los números confirmados del negocio en `.env.local` para desarrollo y en las variables del proyecto Vercel para producción:
+El WhatsApp comercial +57 3213390551 fue confirmado por el usuario el 8 de octubre de 2026 y se utilizó inicialmente como contacto común de ambas sedes. El 27 de octubre confirmó los números propios de cada sede: Maní +57 3213390551 y Yopal +57 3112567920. Estos son los destinatarios predeterminados vigentes. Para sustituir el número de una sede, configurar su variable opcional en `.env.local` para desarrollo y en las variables del proyecto Vercel para producción:
 
 | Variable                | Uso                                                          |
 | ----------------------- | ------------------------------------------------------------ |
-| `WHATSAPP_NUMBER`       | Sustituye el contacto común predeterminado para ambas sedes. |
-| `WHATSAPP_MANI_NUMBER`  | Número de Maní; sustituye al común en esa sede.              |
-| `WHATSAPP_YOPAL_NUMBER` | Número de Yopal; sustituye al común en esa sede.             |
+| `WHATSAPP_MANI_NUMBER`  | Sustituye sólo el número de Maní; predeterminado `573213390551`. |
+| `WHATSAPP_YOPAL_NUMBER` | Sustituye sólo el número de Yopal; predeterminado `573112567920`. |
 
-Usar el formato internacional con código de país y sólo dígitos, sin `+`, espacios ni separadores. Una variable de sede vacía utiliza el número común; si `WHATSAPP_NUMBER` también está vacía se utiliza `573213390551`. Una variable de sede no vacía pero inválida deja esa sede sin envío habilitado, sin redirigir a otro número. Lo mismo ocurre con un número común inválido para las sedes sin un número propio válido. El cliente puede seguir armando su carrito, pero no se crea un enlace a un destinatario desconocido.
+Usar el formato internacional con código de país y sólo dígitos, sin `+`, espacios ni separadores. Una variable de sede vacía utiliza el número predeterminado propio de esa sede. Una variable no vacía pero inválida devuelve `null` y deja el envío deshabilitado únicamente para esa sede, sin redirigir a otro número. El cliente puede seguir armando su carrito, pero no se crea un enlace a un destinatario desconocido.
 
-`src/config/catalog.ts` lee estas variables en el servidor y entrega sólo los números de contacto normalizados al componente interactivo. Esos teléfonos comerciales son visibles para el navegador y en el enlace de WhatsApp; no son secretos. No se requiere prefijo `NEXT_PUBLIC_`. Reiniciar el servidor local después de cambiar `.env.local` y realizar un nuevo despliegue después de actualizar las variables de producción.
+`WHATSAPP_NUMBER` deja de utilizarse y se ignora: una configuración global antigua no debe reemplazar los dos contactos por el mismo destinatario. Retirar esa variable de los entornos anteriores y usar únicamente los reemplazos por sede cuando sean necesarios.
+
+`src/config/catalog.ts` lee las variables por sede en el servidor y usa el resolver puro de `src/config/catalog-phones.ts` para entregar sólo los números de contacto normalizados al componente interactivo. Esos teléfonos comerciales son visibles para el navegador y en el enlace de WhatsApp; no son secretos. No se requiere prefijo `NEXT_PUBLIC_`. Reiniciar el servidor local después de cambiar `.env.local` y realizar un nuevo despliegue después de actualizar las variables de producción.
 
 ## Carrito y entrega
 
@@ -54,7 +55,7 @@ Revisar también el recorrido en escritorio y móvil:
 2. Buscar y filtrar productos, abrir el detalle y agregar varias unidades. Cambiar cantidades y eliminar líneas desde el carrito; comprobar el subtotal.
 3. Recargar para comprobar el carrito y verificar que un carrito vacío no permite preparar el envío.
 4. Completar nombre, sede y entrega. Para domicilio, comprobar la validación de dirección; para recogida, comprobar que no se exige.
-5. Sin variables configuradas, comprobar que el destinatario es el número confirmado `573213390551`. Con una variable no vacía pero inválida, comprobar el aviso y la ausencia de envío para esa sede. Revisar el destinatario y el mensaje con números válidos, incluidos tildes, cantidades, combos, bebida y subtotal. No enviar un pedido real durante la verificación.
+5. Sin variables configuradas, comprobar los destinatarios confirmados: `573213390551` para Maní y `573112567920` para Yopal. Repetir con variables vacías y con un `WHATSAPP_NUMBER` antiguo para confirmar que se conservan los valores propios de cada sede. Con una variable de sede no vacía pero inválida, comprobar el aviso y la ausencia de envío sólo para esa sede. Revisar el destinatario y el mensaje con reemplazos válidos, incluidos tildes, cantidades, combos, bebida y subtotal. No enviar un pedido real durante la verificación.
 6. Recorrer los controles con teclado, cerrar los diálogos con Escape y comprobar retorno de foco, legibilidad y ausencia de desbordamiento en pantalla estrecha.
 
 Estas instrucciones describen cómo verificar la función; no afirman un despliegue ni el envío de un pedido real.
