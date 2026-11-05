@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   useEffect,
   useRef,
@@ -264,6 +265,12 @@ export function Catalog({ whatsAppPhones, initialProductId }: CatalogProps) {
           className={styles.introPhoto}
         />
         <div className={`reference-container ${styles.introContent}`}>
+          <Link
+            href="/"
+            className={`reference-button reference-button-outline ${styles.homeLink}`}
+          >
+            <CatalogIcon name="arrow-left" /> Visita nuestra web
+          </Link>
           <h1 id="catalog-title">
             Tu antojo.
             <br />

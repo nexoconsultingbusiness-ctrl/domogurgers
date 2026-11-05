@@ -1,6 +1,6 @@
 # Procedencia de assets
 
-Preparación inicial: 18 de septiembre de 2026. Última actualización: 5 de octubre de 2026 (America/Bogota). Este inventario cubre los vectores, las fuentes locales y las imágenes actuales y anteriores de la landing de DomoBurgers.
+Preparación inicial: 18 de septiembre de 2026. Última actualización: 5 de noviembre de 2026 (America/Bogota). Este inventario cubre los vectores, las fuentes locales y las imágenes actuales y anteriores de la landing de DomoBurgers.
 
 ## Identidad vectorial
 
@@ -64,6 +64,19 @@ Conversión proporcional sin ampliación, recorte ni edición generativa. Se pre
 | Bacon        | `e9cf93dedf0b3f67b804e60e081530940565c9ee3e630d8b0fc0e46a64cad3dd` | `0ebd290154f23edcd1ca9eac88c132c2b3b451d968017fd3164d18ca687a9165` |
 | Pollo        | `a4c1458097d4af8c359bd14b4894a15a4941178e431f93f3b6b07afcee96eede` | `ddfde1f10972d752fb313531966add8ff1993e0c7b2b4083ecca91f395d60b9e` |
 
+## Interior y fachada — 5 de noviembre de 2026
+
+Imágenes suministradas por el usuario para «Nuestra historia» y «Encuéntranos en Yopal». Los derivados WebP mantienen las dimensiones y la composición completas; la landing los sirve con `next/image`, texto alternativo y altura proporcional, sin recortes.
+
+| Asset                               | Fuente suministrada                                            | Dimensiones y tamaño servido | Uso                                              |
+| ----------------------------------- | -------------------------------------------------------------- | ---------------------------- | ------------------------------------------------ |
+| `public/images/domos-interior.webp` | `C:/Users/User/Downloads/Interior cálido de D’omo Burgers.png` | 1672 × 941 px; 201,540 bytes | Foto de «Nuestra historia», en `#esencia`.       |
+| `public/images/domos-fachada.webp`  | `C:/Users/User/Downloads/Fachada moderna de D’omo Burgers.png` | 941 × 1672 px; 292,308 bytes | Fachada junto a los datos de Yopal, en `#sedes`. |
+
+SHA-256 del WebP de interior: `2b779f42bb52d15476abd410bb561dedba25b464f36134229e1009a02881e440`. SHA-256 del WebP de fachada: `8058229d833982b8c598e05d30ce8e7a74ccb75ed8cefb9c7e05a28f16a0052f`.
+
+Las capturas de composición de historia y opiniones aportadas en esta sesión son referencias de interfaz, no imágenes servidas. `domos-compartir.webp` se conserva como material anterior: fue sustituida por la foto del interior, y las secciones `FlavorScene` y `FinalInvitation` ya no se montan en la portada.
+
 ## Imágenes de entregas anteriores
 
 | Asset                                  | Procedencia y tratamiento                                                                                                                                                                                      | Uso                                                                                          |
@@ -114,4 +127,4 @@ Blenda y Sweet Pea no se distribuyen como fuentes web: no se recibió una licenc
 
 La captura de carta `C:/Users/User/AppData/Local/Temp/codex-clipboard-8ea29eba-d4d3-48cb-97b1-ab1f53620897.png` fue la referencia de composición anterior; no se distribuye como imagen del sitio. El usuario había autorizado nombres, ingredientes y precios de relleno para seis artículos de una carta estática provisional, con un aviso visible de datos de ejemplo en COP. Aquella maqueta reutilizaba solo los dos WebP de hamburguesa existentes.
 
-La referencia autorizada el 5 de octubre sustituye esa maqueta por tres tarjetas con sus fotografías, nombres, ingredientes y precios de ejemplo. Copiar su presentación no acredita una carta confirmada, recetas, precios ni disponibilidad oficial de DomoBurgers. No hay catálogo conectado ni flujo de pedidos.
+La referencia autorizada el 5 de octubre sustituyó esa maqueta por tres tarjetas con sus fotografías, nombres, ingredientes y precios de ejemplo. Copiar su presentación no acreditaba una carta confirmada, recetas, precios ni disponibilidad oficial de DomoBurgers. Las entregas posteriores conectaron `/catalogo`, el carrito y la preparación del pedido por WhatsApp, e incorporaron la carta y fotografías suministradas por el usuario; consultar `docs/catalog.md` para el alcance vigente.

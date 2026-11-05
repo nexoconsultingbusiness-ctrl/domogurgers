@@ -1,4 +1,5 @@
 type IconName =
+  | "arrow-left"
   | "bag"
   | "plus"
   | "minus"
@@ -9,6 +10,7 @@ type IconName =
   | "image";
 
 const paths: Record<IconName, React.ReactNode> = {
+  "arrow-left": <path d="M20 12H4m6-6-6 6 6 6" />,
   image: (
     <>
       <rect x="3" y="3" width="18" height="18" rx="2" />

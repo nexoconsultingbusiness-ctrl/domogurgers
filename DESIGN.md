@@ -28,7 +28,7 @@ typography:
     letterSpacing: "normal"
   brand-headline:
     fontFamily: "Montserrat, sans-serif"
-    fontSize: "clamp(38px, 4.2vw, 66px)"
+    fontSize: "clamp(38px, 3.5vw, 56px)"
     fontWeight: 800
     lineHeight: 1.12
     letterSpacing: "-0.035em"
@@ -144,12 +144,12 @@ components:
 
 La comida ocupa el primer plano mediante fotografía oscura, luz cálida y titulares blancos y oro. El hero, el encabezado y la carta reproducen la referencia Lovable elegida directamente por el usuario el 5 de octubre de 2026: Arial de peso alto, acciones rectangulares y tres tarjetas fotográficas contiguas. La composición anterior con hamburguesa transparente y secuencia de scroll está sustituida.
 
-La experiencia, el detalle y el cierre conservan su lenguaje previo: Montserrat local, composiciones editoriales amplias y emblemas originales. El módulo de historia y sus filas de origen se retiraron por solicitud del usuario. Los enlaces de sedes apuntan al pie de página, donde se conservan Maní y Yopal. El oro conecta ambos lenguajes y los SVG originales mantienen la identidad de D’omo Burgers.
+La portada continúa con «Nuestra historia», la foto completa del interior y cuatro valores compactos, seguidos por opiniones con desplazamiento horizontal móvil. Estas secciones y el formulario de comentarios usan Arial; ubicación y pie mantienen Montserrat local. Los enlaces de sedes apuntan a `#sedes`, el bloque de Yopal con fachada y mapa, seguido por el formulario `#comentarios`. Las secciones anteriores de detalle y cierre ya no se montan. El oro conecta ambos lenguajes y los SVG originales mantienen la identidad de D’omo Burgers.
 
 **Key Characteristics:**
 
 - Fotografía gastronómica protagonista, con imágenes y datos conceptuales identificados.
-- Arial en hero, encabezado y carta; Montserrat local en las secciones de marca conservadas.
+- Arial en hero, encabezado, carta, historia, opiniones y formulario; Montserrat local en ubicación y pie.
 - Negro cálido, blanco de lectura y oro de acción.
 - Controles rectangulares y tarjetas con líneas finas en las regiones de referencia.
 - Logos originales, scroll nativo, contenido visible y foco de teclado.
@@ -174,7 +174,7 @@ La paleta mantiene el oro de marca sobre negros ligeramente cálidos; los neutro
 - **Negro cálido** (`background`, `--background`): lienzo y tinta de acciones de referencia.
 - **Blanco de lectura** (`foreground`, `--foreground`): texto y hover de la acción de contorno.
 - **Gris cálido** (`muted`, `--muted`): ingredientes, apoyos y avisos.
-- **Carbón de detalle** (`surface`, `--surface`): sección de producto conservada.
+- **Carbón de superficie** (`surface`, `--surface`): tarjetas de opiniones y fondo de reserva del mapa.
 - **Línea cálida** (`line`, `--line`): bordes compartidos y separadores.
 - **Blanco fotográfico** (`photo-foreground`): titular y acción de contorno sobre la foto.
 - **Gris fotográfico** (`photo-muted`): descripción y procedencia del hero.
@@ -186,17 +186,17 @@ La paleta mantiene el oro de marca sobre negros ligeramente cálidos; los neutro
 
 **Display Font:** Arial con fallback sans-serif en hero, encabezado y carta. Lovable declara Montserrat sin cargar FontFace; la reproducción usa la Arial visible en sus capturas. Esta elección está autorizada para esas regiones.
 
-**Body Font:** Arial en las regiones de referencia; Montserrat local variable de pesos (100–900) en experiencia, detalle, cierre y pie. Barlow Condensed ya no se carga en el layout.
+**Body Font:** Arial en las regiones de referencia, historia, opiniones y formulario; Montserrat local variable de pesos (100–900) en ubicación y pie. Barlow Condensed ya no se carga en el layout.
 
-**Character:** la referencia usa una sans ancha, mayúsculas y tracking normal. Las secciones conservadas mantienen titulares Montserrat de peso alto y tracking cerrado, con lectura holgada. El lettering permanece en los SVG.
+**Character:** la referencia, historia, opiniones y formulario usan una sans ancha, mayúsculas y tracking normal. Ubicación mantiene el titular Montserrat de peso alto y tracking cerrado, con lectura holgada. El lettering permanece en los SVG.
 
 ### Hierarchy
 
 - **Display:** escala del frontmatter en escritorio; (72px) entre (640px) y (1023px), y (48px) por debajo de (640px). «Sabor que» comienza en blanco y «No se olvida.» continúa en oro; el ancho determina la envoltura adicional.
-- **Headline:** la carta usa la escala Arial registrada; móvil pasa a (36px) e interlineado (40px). Los titulares Montserrat conservados usan clamps propios del bloque y peso (800).
+- **Headline:** la carta usa la escala Arial registrada; móvil pasa a (36px) e interlineado (40px). Historia, opiniones y formulario usan Arial (900), hasta (60px), con clamps propios. Ubicación usa la escala Montserrat del frontmatter, peso (800), y cambia a `clamp(32px, 8.2vw, 49px)` bajo (768px).
 - **Menu title / price:** Arial (900), con precio oro. La pareja admite envoltura del nombre sin comprimir el precio.
-- **Body:** ingredientes e introducción usan el cuerpo Arial; la descripción del hero aumenta a (18px), o (16px) en móvil, con límite de (512px). La lectura Montserrat conservada se mueve entre (13px) y (17px), con límites de (500–520px).
-- **Label / button:** navegación, avisos y controles mantienen jerarquía compacta. La etiqueta superpuesta usa (10.4px) y peso (900), específica de la foto. El pie y los emblemas contienen microtexto, sin sustituir lectura esencial.
+- **Body:** ingredientes e introducción usan el cuerpo Arial; la descripción del hero aumenta a (18px), o (16px) en móvil, con límite de (512px). Historia usa (16px), o (15px) bajo (640px); opiniones usa (14px) y el apoyo del formulario (16px), limitado a (440px). La dirección de Yopal conserva Montserrat de (14px) e interlineado (1.8).
+- **Label / button:** navegación, avisos y controles mantienen jerarquía compacta. La etiqueta superpuesta usa (10.4px) y peso (900), específica de la foto. El pie contiene microtexto, sin sustituir lectura esencial; los emblemas anteriores ya no se montan.
 
 **The Readable Content Rule.** Los textos esenciales viven en HTML, con titulares completos y párrafos legibles. El lettering, los contornos decorativos y los microtextos de emblemas no sustituyen la jerarquía de contenido.
 
@@ -208,19 +208,21 @@ El hero mide al menos (92svh). La foto cerrada cubre toda la sección con `objec
 
 La carta sigue inmediatamente al hero: tres columnas desde (768px), una por debajo, gaps y borde exterior de (1px). Las fotos tienen proporción (4:3). El encabezado de sección se apila bajo (1101px). El padding vertical es (112px), o (80px) bajo (640px); el cuerpo de tarjeta usa (28px), o (24px) en ese mismo breakpoint.
 
-Las secciones conservadas mantienen `min(1360px, 100% - 128px)`, márgenes laterales de (40px) bajo (1101px) y (20px) en móvil. Sus dos columnas se apilan bajo (768px). El sello, el emblema y las fechas conservan sus composiciones propias. El espaciado registrado no impone una retícula única a toda la portada.
+Historia, opiniones y formulario comparten `reference-container`. «Nuestra historia» dispone texto e imagen proporcional en dos columnas, apiladas hasta (900px); los cuatro valores forman una fila compacta inferior y pasan a dos columnas en ese mismo breakpoint. Las opiniones muestran tres tarjetas contiguas desde (768px); por debajo, una región enfocable permite desplazamiento horizontal nativo con scroll snap, tarjetas de hasta (360px), separación de (16px) e indicación «Desliza para ver más».
+
+«Encuéntranos en Yopal» hereda Montserrat local y los acentos oro de las secciones de marca. El bloque `#sedes` conserva el contenedor `min(1360px, 100% - 128px)` y dispone texto, fachada de (240px) y mapa en tres columnas, con separación de (32px). Bajo (1200px), el mapa ocupa una fila completa y la fachada mide (220px). Bajo (768px), el titular ocupa todo el ancho, la fachada mide `clamp(104px, 28vw, 160px)` y queda junto a dirección y acción «Cómo llegar», con separación de (24px); el mapa continúa debajo y pasa de (440px) a (360px) de alto. La foto se muestra completa, sin recortes.
 
 ## Elevation & Depth
 
-Hero y carta obtienen profundidad de fotografías y veladuras. Las tarjetas son planas, con líneas finas y sin sombra ni tilt. La acción rectangular sube ligeramente al hover. Las secciones conservadas mantienen sombras ambientales, perspectiva CSS y capas de marca.
+Hero y carta obtienen profundidad de fotografías y veladuras. Las tarjetas de carta, valores y opiniones son planas, con líneas finas y sin sombra ni tilt. La acción rectangular sube ligeramente al hover. Las fotografías de interior y fachada conservan su composición completa.
 
 ### Shadow Vocabulary
 
-- **Profundidad fotográfica** (`--depth-shadow`): bajo la fotografía de detalle.
+- **Profundidad fotográfica** (`--depth-shadow`): token del detalle anterior, que ya no se monta.
 - **Respuesta de acción de marca:** hover del botón Montserrat conservado.
-- **Sello y emblema:** sombras del círculo oro y de la pieza negra sobre vino; valores en el sidecar.
+- **Sello y emblema:** sombras conservadas como referencia de piezas anteriores, fuera de la portada vigente.
 
-**The Progressive Depth Rule.** La perspectiva CSS (1200px) y las capas de marca producen profundidad con scroll nativo. `LandingMotion` habilita parallax únicamente desde (1024px) y limita la inclinación a (3°) con puntero fino. El hero y las tarjetas de carta no participan en esos efectos.
+**The Progressive Depth Rule.** `LandingMotion` conserva soporte de parallax únicamente desde (1024px) y limita la inclinación a (3°) con puntero fino, pero las secciones vigentes no montan nodos con esos atributos. La portada mantiene scroll nativo y reveals opcionales.
 
 GSAP se importa de forma diferida; `IntersectionObserver` activa reveals de una ejecución, un `WeakSet` conserva los vistos y RAF calcula el parallax de piezas conservadas. Movimiento reducido elimina transiciones, animaciones y tilt/parallax, y cambia el scroll suave a automático. El contenido es visible antes de los efectos. El hero es estático: no monta `HeroScroll`, canvas, frames ni video. Los módulos y assets anteriores quedan archivados, fuera del sistema vigente.
 
@@ -228,7 +230,7 @@ GSAP se importa de forma diferida; `IntersectionObserver` activa reveals de una 
 
 Acciones, etiquetas, flechas y tarjetas de referencia tienen esquinas rectas (`rounded.rectangular`) y bordes finos compartidos. La fotografía admite recorte; los logos conservan su proporción completa.
 
-Las piezas de marca conservadas usan esquinas discretas en acciones (`rounded.action`), radio de superficie en fotografía y emblema (`rounded.surface`, `--radius`) y sello circular (`rounded.circle`). Esos radios no se trasladan a las tarjetas de referencia.
+La acción de ubicación usa esquinas discretas (`rounded.action`), y fachada y mapa usan radio de superficie (`rounded.surface`, `--radius`). El sello circular (`rounded.circle`) permanece como patrón histórico. Esos radios no se trasladan a las tarjetas de referencia.
 
 ## Components
 
@@ -240,7 +242,7 @@ Acciones rectangulares, compactas y visibles sobre la foto.
 - **Outline:** fondo transparente, borde blanco fotográfico al (40%) y pin SVG; «Encuéntranos» lleva a `#sedes`. Hover con blanco de lectura.
 - **Hover / Focus:** primario oro de interacción y subida de (2px). Outline de foco oro de (3px), separado (6px), con `:focus-visible`.
 - **Header CTA:** compacto hacia `/catalogo`; «Pedir ahora» inicia el recorrido de selección y carrito. Móvil usa «Ver catálogo», mínimo (44px).
-- **Brand action / text link:** botón Montserrat redondeado y enlaces editoriales conservados. Su flecha se desplaza (4px) al hover; los apoyos pueden comenzar en oro. El detalle de marca incluye «Ver catálogo» y el cierre «Armar mi pedido», ambos hacia `/catalogo`. En móvil, el botón del detalle ocupa una fila completa bajo sello y texto.
+- **Brand action / text link:** «Cómo llegar» usa el botón Montserrat redondeado y abre el pin confirmado de Yopal en Google Maps. Su flecha se desplaza (4px) al hover. Los botones de las antiguas secciones de detalle y cierre ya no se muestran.
 
 ### Cards / Containers
 
@@ -248,8 +250,8 @@ La carta presenta tres artículos dentro de una superficie continua.
 
 - **Photo:** (4:3), cover y etiqueta amarilla superior izquierda. Con hover y puntero fino, escala (1.05) durante (700ms); movimiento reducido anula la transición.
 - **Copy:** nombre/precio, ingredientes, separador, estrella SVG y botón de contorno oro «Elegir», con flecha y altura mínima de (44px), hacia `/catalogo?producto=<id>` con nombre accesible del producto. Debajo de la retícula, «Ver catálogo y armar pedido» ofrece el acceso general.
-- **Truth:** la carta real se transcribió de las ocho fotografías entregadas el 12 de octubre de 2026. La portada destaca Tradicional, Bacon Cheese y Pollo Crispy; el catálogo contiene 58 opciones con precios en COP e ingredientes cuando están impresos. Los espacios de foto quedan identificados como «Foto próximamente» hasta que el usuario entregue las imágenes.
-- **Retained brand pieces:** foto de detalle con radio/sombra, lista descriptiva de valores, emblema negro sobre vino y sello circular oro, en Montserrat y con SVG originales.
+- **Truth:** la carta real se transcribió de las ocho fotografías entregadas el 12 de octubre de 2026. La portada destaca Tradicional, Bacon Cheese y Pollo Crispy con fotos suministradas por el usuario; el catálogo contiene 58 opciones con precios en COP e ingredientes cuando están impresos. Las opciones sin foto conservan «Foto próximamente».
+- **History and opinions:** foto del interior completa y valores compactos en `#esencia`; tres comentarios transcritos de la captura del usuario en `#opiniones`, con citas, cinco estrellas, nombre y ciudad. Son contenido estático suministrado, sin conexión a una plataforma de reseñas.
 
 ### Navigation
 
@@ -264,11 +266,15 @@ La ampliación de `/catalogo` conserva Arial, negro cálido, oro, fotografía de
 - **Order fields:** campos rectangulares sobre negro cálido, borde fino, texto de (16px) y altura mínima de (48px); foco oro de (2px). Nombre, sede, recogida o domicilio, dirección condicional y notas preceden al subtotal y la acción WhatsApp. Los errores usan texto coral; los avisos de configuración y el subtotal destacan en oro. Los estados vacíos ofrecen volver al menú.
 - **State and truth:** selección visible de filtros, cantidades en tarjeta, controles deshabilitados en los límites y espacios de fotografía pendientes. La carta usa productos, ingredientes y precios suministrados; el resumen de WhatsApp conserva combos, bebidas y recargo por unidad. La acción prepara un mensaje para confirmar con el negocio; no presenta el pedido como pagado o aceptado. Movimiento reducido elimina las transiciones, incluido el zoom fotográfico leve.
 
+### Feedback
+
+La sección `#comentarios` sigue la captura aportada por el usuario el 5 de noviembre de 2026 y se coloca inmediatamente después del mapa de Yopal. Sobre negro cálido, la columna izquierda reúne la etiqueta oro «Tu opinión cuenta», el titular Arial de peso (900), hasta (60px), en blanco y oro sobre dos líneas, texto de apoyo y una nota con icono. La columna derecha contiene el formulario con borde fino de (1px), campos negros rectangulares, contador de comentario y botón oro de ancho completo. Bajo (960px), ambas columnas se apilan. Las etiquetas visibles, el foco oro y los errores asociados a cada campo mantienen la navegación accesible. La nota bajo el botón explica que WhatsApp abre el mensaje para revisión y envío; no anuncia un envío realizado desde la web. Implementación en `src/features/brand/feedback*` y alcance en `docs/feedback.md`.
+
 ### Brand Assets
 
-Los SVG en `public/brand/` conservan procedencia, proporciones y colores: blanco en encabezado, negro en sello y wordmark blanco en pie. El logo oro del módulo de historia queda como asset de marca sin montarse. Su documentación está en `public/brand/README.md`.
+Los SVG en `public/brand/` conservan procedencia, proporciones y colores: blanco en encabezado y wordmark blanco en pie. Los logos negro del sello y oro del antiguo módulo de historia quedan como assets de marca sin montarse. Su documentación está en `public/brand/README.md`.
 
-El hero sirve `burger-reference-hero.webp`, optimizado desde el JPG cerrado del usuario, con preload y `sizes="(max-aspect-ratio: 16/9) 164svh, 100vw"` para cubrir también el ancho fotográfico necesario en retratos altos. Los assets `menu-doble.webp`, `menu-bacon.webp` y `menu-pollo.webp` se conservan como material de la carta anterior; los productos reales reservan sus fotos mediante `image: null` y el componente compartido `ProductImage`. Detalle de marca y cierre conservan sus imágenes anteriores. Las fotos de producto usarán su nombre como texto alternativo; el hero es decorativo. Procedencia y hashes están en `docs/asset-manifest.md`.
+El hero sirve `burger-reference-hero.webp`, optimizado desde el JPG cerrado del usuario, con preload y `sizes="(max-aspect-ratio: 16/9) 164svh, 100vw"` para cubrir también el ancho fotográfico necesario en retratos altos. Los assets `menu-doble.webp`, `menu-bacon.webp` y `menu-pollo.webp` se conservan como material de la carta anterior; `ProductImage` comparte las fotografías suministradas de los productos reales y reserva las pendientes mediante `image: null`. Historia sirve `domos-interior.webp` (1672 × 941 px) y ubicación `domos-fachada.webp` (941 × 1672 px), ambas completas y con texto alternativo descriptivo. Detalle y cierre anteriores ya no se montan. Las fotos de producto usan su nombre como texto alternativo; el hero es decorativo. Procedencia y hashes están en `docs/asset-manifest.md`.
 
 El sidecar muestra snippets autónomos de ambos lenguajes vigentes, con SVG inline, fotos embebidas y estados de interacción. Las rampas sintetizadas solo previsualizan color; no añaden tonos de aplicación.
 
@@ -277,7 +283,7 @@ El sidecar muestra snippets autónomos de ambos lenguajes vigentes, con SVG inli
 ### Do:
 
 - **Do** conservar el formato OKLCH de los neutros y los colores internos de los logos originales.
-- **Do** usar Arial en las regiones de referencia y Montserrat local en las secciones de marca conservadas.
+- **Do** usar Arial en las regiones de referencia, historia, opiniones y formulario, y Montserrat local en ubicación y pie.
 - **Do** mantener controles rectangulares, fotos (4:3) y líneas compartidas en la carta.
 - **Do** dimensionar las fuentes de imagen para el recorte cover, también en móvil.
 - **Do** usar los datos suministrados del menú, identificar las fotos pendientes y conservar foco visible y destinos internos verdaderos.

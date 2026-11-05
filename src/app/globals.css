@@ -169,49 +169,6 @@ h2 {
 .ribbon-phrase svg {
   width: 22px;
 }
-.essence-section {
-  padding: 130px 0;
-}
-.essence-layout {
-  grid-template-columns: 1.1fr 1fr;
-  gap: 100px;
-  display: grid;
-}
-.essence-layout h2 {
-  letter-spacing: -0.035em;
-  font-size: clamp(36px, 3.6vw, 58px);
-  font-weight: 800;
-  line-height: 1.15;
-}
-.essence-layout h2 span {
-  color: var(--gold);
-}
-.essence-layout .text-link {
-  margin-top: 26px;
-}
-.essence-copy > p {
-  color: #d9d5cf;
-  max-width: 520px;
-  font-size: 17px;
-  line-height: 1.8;
-}
-.brand-values {
-  margin-top: 30px;
-}
-.brand-values > div {
-  border-top: 1px solid var(--line);
-  padding: 22px 0;
-}
-.brand-values dt {
-  font-size: 14px;
-  font-weight: 700;
-}
-.brand-values dd {
-  color: var(--muted);
-  margin-top: 5px;
-  font-size: 12px;
-  line-height: 1.8;
-}
 .flavor-section {
   background: var(--surface);
   padding: 112px 0 96px;
@@ -610,9 +567,6 @@ h2 {
   .container {
     width: calc(100% - 80px);
   }
-  .essence-layout {
-    gap: 48px;
-  }
   .flavor-composition {
     grid-template-columns: 1fr 240px;
     gap: 36px;
@@ -645,12 +599,6 @@ h2 {
   }
 }
 @media (max-width: 900px) {
-  .essence-layout h2 {
-    font-size: 36px;
-  }
-  .essence-copy > p {
-    font-size: 15px;
-  }
   .flavor-composition {
     grid-template-columns: 1fr 190px;
     gap: 28px;
@@ -732,35 +680,6 @@ h2 {
   .ribbon-phrase svg {
     width: 17px;
     height: 17px;
-  }
-  .essence-section {
-    padding: 76px 0;
-  }
-  .essence-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .essence-layout h2 {
-    font-size: clamp(32px, 8.2vw, 49px);
-  }
-  .essence-layout .text-link {
-    margin-top: 16px;
-  }
-  .essence-copy > p {
-    font-size: 14px;
-    line-height: 1.85;
-  }
-  .brand-values {
-    margin-top: 24px;
-  }
-  .brand-values > div {
-    padding-block: 20px;
-  }
-  .brand-values dt {
-    font-size: 13px;
-  }
-  .brand-values dd {
-    font-size: 11px;
   }
   .flavor-section {
     padding: 72px 0 64px;

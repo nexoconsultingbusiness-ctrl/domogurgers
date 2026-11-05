@@ -1,6 +1,6 @@
 # Catálogo digital y pedidos por WhatsApp
 
-`/catalogo` adapta a DomoBurgers el recorrido autorizado el 8 de octubre de 2026: explorar productos, ver su detalle, agregar unidades al carrito y preparar el pedido para WhatsApp. La portada conserva su identidad y enlaza al catálogo desde el menú, los botones de pedido y cada producto.
+`/catalogo` adapta a DomoBurgers el recorrido autorizado el 8 de octubre de 2026: explorar productos, ver su detalle, agregar unidades al carrito y preparar el pedido para WhatsApp. La portada conserva su identidad y enlaza al catálogo desde el menú, los botones de pedido y cada producto. El botón «Visita nuestra web», situado antes del título del catálogo, permite regresar a la portada desde escritorio y móvil.
 
 ## Productos y precios
 
@@ -28,9 +28,9 @@ El carrito distingue producto solo y producto con cada bebida. Dos unidades con 
 
 El WhatsApp comercial +57 3213390551 fue confirmado por el usuario el 8 de octubre de 2026 y se utilizó inicialmente como contacto común de ambas sedes. El 27 de octubre confirmó los números propios de cada sede: Maní +57 3213390551 y Yopal +57 3112567920. Estos son los destinatarios predeterminados vigentes. Para sustituir el número de una sede, configurar su variable opcional en `.env.local` para desarrollo y en las variables del proyecto Vercel para producción:
 
-| Variable                | Uso                                                          |
-| ----------------------- | ------------------------------------------------------------ |
-| `WHATSAPP_MANI_NUMBER`  | Sustituye sólo el número de Maní; predeterminado `573213390551`. |
+| Variable                | Uso                                                               |
+| ----------------------- | ----------------------------------------------------------------- |
+| `WHATSAPP_MANI_NUMBER`  | Sustituye sólo el número de Maní; predeterminado `573213390551`.  |
 | `WHATSAPP_YOPAL_NUMBER` | Sustituye sólo el número de Yopal; predeterminado `573112567920`. |
 
 Usar el formato internacional con código de país y sólo dígitos, sin `+`, espacios ni separadores. Una variable de sede vacía utiliza el número predeterminado propio de esa sede. Una variable no vacía pero inválida devuelve `null` y deja el envío deshabilitado únicamente para esa sede, sin redirigir a otro número. El cliente puede seguir armando su carrito, pero no se crea un enlace a un destinatario desconocido.
@@ -51,7 +51,7 @@ Ejecutar `npm run check` para lint, tipos, pruebas y build. Las pruebas del cat�
 
 Revisar también el recorrido en escritorio y móvil:
 
-1. Abrir `/catalogo` desde la portada y desde una flecha de producto; esta última debe abrir el detalle correspondiente.
+1. Abrir `/catalogo` desde la portada y desde una flecha de producto; esta última debe abrir el detalle correspondiente. Comprobar que «Visita nuestra web» regresa a la portada.
 2. Buscar y filtrar productos, abrir el detalle y agregar varias unidades. Cambiar cantidades y eliminar líneas desde el carrito; comprobar el subtotal.
 3. Recargar para comprobar el carrito y verificar que un carrito vacío no permite preparar el envío.
 4. Completar nombre, sede y entrega. Para domicilio, comprobar la validación de dirección; para recogida, comprobar que no se exige.

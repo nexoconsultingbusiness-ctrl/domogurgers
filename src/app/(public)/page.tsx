@@ -1,8 +1,9 @@
 import { Hero } from "@/features/brand/hero";
 import { Experience } from "@/features/brand/experience";
+import { Testimonials } from "@/features/brand/testimonials";
 import { MenuSection } from "@/features/brand/menu-section";
-import { FlavorScene } from "@/features/brand/flavor-scene";
-import { FinalInvitation } from "@/features/brand/final-invitation";
+import { Location } from "@/features/brand/location";
+import { Feedback } from "@/features/brand/feedback";
 import { LandingMotion } from "@/components/motion/landing-motion";
 
 export default function HomePage() {
@@ -11,8 +12,9 @@ export default function HomePage() {
       <Hero />
       <MenuSection />
       <Experience />
-      <FlavorScene />
-      <FinalInvitation />
+      <Testimonials />
+      <Location />
+      <Feedback />
     </LandingMotion>
   );
 }

@@ -51,19 +51,19 @@ Los nueve WebP conservan las dimensiones nativas y calidad de codificación 95: 
 
 ## Fotos recibidas el 27 de octubre de 2026
 
-| Archivo aportado | Ruta pública preparada | Producto / estado |
-| --- | --- | --- |
-| `Salchipapa.png` | `/images/products/salchipapa.webp` | `salchipapa` |
-| `Picada.png` | `/images/products/domo-picada-20261027.webp` | `domo-picada` |
-| `Picada con Costillas.png` | `/images/products/domo-picada-costillas.webp` | `domo-picada-costillas` |
-| `Michelada Stella.png` | `/images/products/michelada-stella.webp` | `michelada-stella` |
-| `Michelada Soda.png` | `/images/products/michelada-soda.webp` | `michelada-soda` |
-| `Michelada Ginger.png` | `/images/products/michelada-ginger.webp` | `michelada-ginger` |
-| `Michelada Ceveza.png` | `/images/products/michelada-cerveza.webp` | `michelada-cerveza` |
-| `Menú Infantil Pollo.png` | `/images/products/infantil-pollo-menu.webp` | `infantil-pollo` |
-| `Menú Infantil Hamburguesa.png` | `/images/products/infantil-hamburguesa.webp` | `infantil-hamburguesa` |
-| `Aros de Cebolla.png` | `/images/products/aros-cebolla.webp` | `aros-cebolla`, entrada |
-| `Hamburguesa Lechuga.png` | `/images/products/pending/hamburguesa-lechuga.webp` | Pendiente de identificación y datos comerciales |
+| Archivo aportado                | Ruta pública preparada                              | Producto / estado                               |
+| ------------------------------- | --------------------------------------------------- | ----------------------------------------------- |
+| `Salchipapa.png`                | `/images/products/salchipapa.webp`                  | `salchipapa`                                    |
+| `Picada.png`                    | `/images/products/domo-picada-20261027.webp`        | `domo-picada`                                   |
+| `Picada con Costillas.png`      | `/images/products/domo-picada-costillas.webp`       | `domo-picada-costillas`                         |
+| `Michelada Stella.png`          | `/images/products/michelada-stella.webp`            | `michelada-stella`                              |
+| `Michelada Soda.png`            | `/images/products/michelada-soda.webp`              | `michelada-soda`                                |
+| `Michelada Ginger.png`          | `/images/products/michelada-ginger.webp`            | `michelada-ginger`                              |
+| `Michelada Ceveza.png`          | `/images/products/michelada-cerveza.webp`           | `michelada-cerveza`                             |
+| `Menú Infantil Pollo.png`       | `/images/products/infantil-pollo-menu.webp`         | `infantil-pollo`                                |
+| `Menú Infantil Hamburguesa.png` | `/images/products/infantil-hamburguesa.webp`        | `infantil-hamburguesa`                          |
+| `Aros de Cebolla.png`           | `/images/products/aros-cebolla.webp`                | `aros-cebolla`, entrada                         |
+| `Hamburguesa Lechuga.png`       | `/images/products/pending/hamburguesa-lechuga.webp` | Pendiente de identificación y datos comerciales |
 
 Se asignan diez fotografías a productos existentes: ocho incorporaciones y dos reemplazos, para un total de 32 productos con foto. La nueva Domo Picada utiliza una ruta fechada; Pollo infantil usa `infantil-pollo-menu.webp` sin su antiguo `imagePreview` ni su ajuste de posición anterior. Se conservan los archivos previos de ambos productos. Aros de cebolla recibe la fotografía como entrada; `adicional-aros-cebolla` sigue dentro de los adicionales compactos sin imagen. No se modifican nombres, precios ni ingredientes.
 

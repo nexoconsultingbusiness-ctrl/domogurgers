@@ -4,7 +4,7 @@ import { ArrowRight } from "@/components/ui/icons";
 
 export function Footer() {
   return (
-    <footer id="sedes" className="site-footer">
+    <footer className="site-footer">
       <div className="container footer-main">
         <Link
           href="/#inicio"
